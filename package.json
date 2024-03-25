@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Airbnb React",
   "engines": {
-    "node": ">=20.0.0"
+    "node": "18.x"
   },
   "main": "index.js",
   "scripts": {
