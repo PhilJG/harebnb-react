@@ -7,8 +7,10 @@ import { useState, useEffect } from 'react'
 function Houses() {
   const [houses, setHouses] = useState([])
   const getHouses = async () => {
-    let { data } = await axios.get('https://haiku-bnb.onrender.com/houses')
+    let { data } = await axios.get('https://harebnb-api.onrender.com/houses')
+    console.log(data)
     setHouses(data)
+    console.log(data)
   }
   useEffect(() => {
     getHouses()

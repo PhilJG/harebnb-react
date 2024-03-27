@@ -12,7 +12,7 @@ function Login() {
     let form = new FormData(e.target)
     let formObject = Object.fromEntries(form.entries())
     const apiResponse = await axios.post(
-      'https://haiku-bnb.onrender.com/login',
+      'https://harebnb-api.onrender.com/login',
       {
         email: formObject.email,
         password: formObject.password

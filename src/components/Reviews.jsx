@@ -63,7 +63,7 @@ function Reviews() {
   const [reviews, setReviews] = useState([])
   const getReviews = async () => {
     let { data } = await axios.get(
-      'https://haiku-bnb.onrender.com/reviews' + (id ? '?house_id=' + id : '')
+      'https://harebnb-api.onrender.com/reviews' + (id ? '?house_id=' + id : '')
     )
     setReviews(data)
   }

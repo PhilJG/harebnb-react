@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react'
 function Filters({ setHouses }) {
   const [locations, setLocations] = useState([])
   const getLocations = async () => {
-    let { data } = await axios.get('https://haiku-bnb.onrender.com/locations')
+    let { data } = await axios.get('https://harebnb-api.onrender.com/locations')
     setLocations(data)
   }
   useEffect(() => {
@@ -35,15 +35,18 @@ function Filters({ setHouses }) {
     if (obj.search) {
       paramsObject.searc = obj.search
     }
-    let apiResponse = await axios.get('https://haiku-bnb.onrender.com/houses', {
-      params: {
-        location: obj.location,
-        min_rooms: obj.min_rooms,
-        max_price: obj.max_price,
-        sort: obj.sort,
-        search: obj.search
+    let apiResponse = await axios.get(
+      'https://harebnb-api.onrender.com/houses',
+      {
+        params: {
+          location: obj.location,
+          min_rooms: obj.min_rooms,
+          max_price: obj.max_price,
+          sort: obj.sort,
+          search: obj.search
+        }
       }
-    })
+    )
     return apiResponse.data
   }
 
