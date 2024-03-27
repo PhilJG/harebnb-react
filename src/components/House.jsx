@@ -78,7 +78,9 @@ function House() {
   const [house, setHouse] = useState(undefined)
 
   const getHouse = async () => {
-    let { data } = await axios.get('https://harebnb-api.onrender.com/houses/1')
+    let { data } = await axios.get(
+      `'${process.env.REACT_APP_API_PATH}/houses/1'`
+    )
 
     console.log(data)
     setHouse(data)

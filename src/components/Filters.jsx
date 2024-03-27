@@ -11,7 +11,9 @@ import { useState, useEffect } from 'react'
 function Filters({ setHouses }) {
   const [locations, setLocations] = useState([])
   const getLocations = async () => {
-    let { data } = await axios.get('https://harebnb-api.onrender.com/locations')
+    let { data } = await axios.get(
+      `'${process.env.REACT_APP_API_PATH}/locations'`
+    )
     setLocations(data)
   }
   useEffect(() => {
@@ -36,7 +38,7 @@ function Filters({ setHouses }) {
       paramsObject.searc = obj.search
     }
     let apiResponse = await axios.get(
-      'https://harebnb-api.onrender.com/houses',
+      `'${process.env.REACT_APP_API_PATH}/houses'`,
       {
         params: {
           location: obj.location,
