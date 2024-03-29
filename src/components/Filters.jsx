@@ -12,7 +12,7 @@ function Filters({ setHouses }) {
   const [locations, setLocations] = useState([])
   const getLocations = async () => {
     let { data } = await axios.get(
-      `'${process.env.REACT_APP_API_PATH}/locations'`
+      `${process.env.REACT_APP_API_PATH}/locations`
     )
     setLocations(data)
   }
