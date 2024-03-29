@@ -4,10 +4,12 @@ import HouseCard from './HouseCard'
 import Filters from './Filters'
 import { useState, useEffect } from 'react'
 
+const apiPath = process.env.REACT_APP_API_PATH
+
 function Houses() {
   const [houses, setHouses] = useState([])
   const getHouses = async () => {
-    let { data } = await axios.get(`'${REACT_APP_API_PATH}/houses'`)
+    let { data } = await axios.get(`'${apiPath}/houses'`)
     console.log(data)
     setHouses(data)
     console.log(data)
