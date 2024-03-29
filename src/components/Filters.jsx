@@ -14,6 +14,12 @@ import { useState, useEffect } from 'react'
 
 function Filters({ setHouses }) {
   const [locations, setLocations] = useState([])
+  const [selectedOption, setSelectedOption] = useState('') // Step 1
+
+  const handleChange = (event) => {
+    setSelectedOption(event.target.value) // Step 3
+  }
+
   const getLocations = async () => {
     let { data } = await axios.get(`/locations`)
     setLocations(data)
@@ -86,16 +92,18 @@ function Filters({ setHouses }) {
           <FontAwesomeIcon icon={faBed} className="mr-2" />
           <select
             name="min_rooms"
+            value={selectedOption}
+            onChange={handleChange}
             className="bg-white text-sm text-black font-semibold flex-1"
           >
             <option selected value="">
               Any Rooms
             </option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
           </select>
         </div>
         {/* Max Price */}
