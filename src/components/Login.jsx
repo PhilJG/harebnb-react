@@ -11,10 +11,13 @@ function Login() {
     e.preventDefault()
     let form = new FormData(e.target)
     let formObject = Object.fromEntries(form.entries())
-    const apiResponse = await axios.post(`'${process.env.API_PATH}/login'`, {
-      email: formObject.email,
-      password: formObject.password
-    })
+    const apiResponse = await axios.post(
+      `'${process.env.REACT_APP_API_PATH}/login'`,
+      {
+        email: formObject.email,
+        password: formObject.password
+      }
+    )
     if (apiResponse.data.error) {
       setError(apiResponse.data.error)
     } else {

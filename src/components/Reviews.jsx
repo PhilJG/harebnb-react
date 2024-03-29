@@ -63,7 +63,8 @@ function Reviews() {
   const [reviews, setReviews] = useState([])
   const getReviews = async () => {
     let { data } = await axios.get(
-      `'${process.env.API_PATH}reviews'` + (id ? '?house_id=' + id : '')
+      `'${process.env.REACT_APP_API_PATH}reviews'` +
+        (id ? '?house_id=' + id : '')
     )
     setReviews(data)
   }

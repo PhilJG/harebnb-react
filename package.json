@@ -28,7 +28,6 @@
   },
   "devDependencies": {
     "eslint": "^8.56.0",
-    "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
     "prettier-eslint": "^16.3.0",
     "tailwindcss": "^3.4.1"
