@@ -5,15 +5,17 @@ import {
   faDollarSign,
   faSort
 } from '@fortawesome/free-solid-svg-icons'
+
 import axios from 'axios'
+
+const apiPath = process.env.REACT_APP_API_PATH
+
 import { useState, useEffect } from 'react'
 
 function Filters({ setHouses }) {
   const [locations, setLocations] = useState([])
   const getLocations = async () => {
-    let { data } = await axios.get(
-      `${process.env.REACT_APP_API_PATH}/locations`
-    )
+    let { data } = await axios.get(`/locations`)
     setLocations(data)
   }
   useEffect(() => {

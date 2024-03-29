@@ -9,7 +9,7 @@ const apiPath = process.env.REACT_APP_API_PATH
 function Houses() {
   const [houses, setHouses] = useState([])
   const getHouses = async () => {
-    let { data } = await axios.get(`${apiPath}/houses`)
+    let { data } = await axios.get(`/houses`)
     console.log(data)
     setHouses(data)
     console.log(data)
