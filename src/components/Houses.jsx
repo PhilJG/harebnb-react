@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 function Houses() {
   const [houses, setHouses] = useState([])
   const getHouses = async () => {
-    let { data } = await axios.get(`'${REACT_APP_API_PATH}/houses'`)
+    let { data } = await axios.get(`'${API_PATH}/houses'`)
     console.log(data)
     setHouses(data)
     console.log(data)

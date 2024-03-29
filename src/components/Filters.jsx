@@ -11,9 +11,7 @@ import { useState, useEffect } from 'react'
 function Filters({ setHouses }) {
   const [locations, setLocations] = useState([])
   const getLocations = async () => {
-    let { data } = await axios.get(
-      `'${process.env.REACT_APP_API_PATH}/locations'`
-    )
+    let { data } = await axios.get(`'${process.env.API_PATH}/locations'`)
     setLocations(data)
   }
   useEffect(() => {
@@ -37,18 +35,15 @@ function Filters({ setHouses }) {
     if (obj.search) {
       paramsObject.searc = obj.search
     }
-    let apiResponse = await axios.get(
-      `'${process.env.REACT_APP_API_PATH}/houses'`,
-      {
-        params: {
-          location: obj.location,
-          min_rooms: obj.min_rooms,
-          max_price: obj.max_price,
-          sort: obj.sort,
-          search: obj.search
-        }
+    let apiResponse = await axios.get(`'${process.env.API_PATH}/houses'`, {
+      params: {
+        location: obj.location,
+        min_rooms: obj.min_rooms,
+        max_price: obj.max_price,
+        sort: obj.sort,
+        search: obj.search
       }
-    )
+    })
     return apiResponse.data
   }
 
