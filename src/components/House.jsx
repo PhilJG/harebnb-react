@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
 import Nav from './Nav'
@@ -75,17 +76,18 @@ function BookHouse({ house }) {
 }
 
 function House() {
-  const [house, setHouse] = useState(undefined)
+  const [house, setHouse] = useState({
+    images: [],
+    host: {}
+  })
+
+  const params = useParams()
 
   const getHouse = async () => {
     let { data } = await axios.get(
-      `'${process.env.REACT_APP_API_PATH}/houses/1'`
+      `${process.env.REACT_APP_API_PATH}/houses/${params.id}`
     )
-
-    console.log(data)
     setHouse(data)
-
-    return house
   }
 
   useEffect(() => {

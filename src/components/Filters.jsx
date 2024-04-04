@@ -8,8 +8,6 @@ import {
 
 import axios from 'axios'
 
-const apiPath = process.env.REACT_APP_API_PATH
-
 import { useState, useEffect } from 'react'
 
 function Filters({ setHouses }) {
@@ -21,9 +19,10 @@ function Filters({ setHouses }) {
   }
 
   const getLocations = async () => {
-    let { data } = await axios.get(`/locations`)
+    let { data } = await axios.get(`'${process.env.REACT_APP_API_PATH}/locations'`)
     setLocations(data)
   }
+  
   useEffect(() => {
     getLocations(locations)
   }, [])
@@ -57,6 +56,8 @@ function Filters({ setHouses }) {
         }
       }
     )
+    console.log(apiResponse.data);
+    
     return apiResponse.data
   }
 
@@ -79,7 +80,7 @@ function Filters({ setHouses }) {
             name="location"
             className="bg-white text-sm text-black font-semibold flex-1"
           >
-            <option selected value="">
+            <option selected value={selectedOption}>
               Any Location
             </option>
             {locations.map((location, index) => (
@@ -96,14 +97,11 @@ function Filters({ setHouses }) {
             onChange={handleChange}
             className="bg-white text-sm text-black font-semibold flex-1"
           >
-            <option selected value="">
+            <option selected defaultValue={selectedOption}>
               Any Rooms
             </option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+           { locations.map((location, index) => <option value={location} key={index}>{location}</option>
+            )}
           </select>
         </div>
         {/* Max Price */}
@@ -123,7 +121,7 @@ function Filters({ setHouses }) {
             name="sort"
             className="bg-white text-sm text-black font-semibold flex-1"
           >
-            <option selected value="">
+            <option selected value={selectedOption}>
               sort by
             </option>
             <option value="price">Price: low to high</option>

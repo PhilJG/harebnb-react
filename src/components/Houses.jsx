@@ -10,15 +10,19 @@ const apiPath = process.env.REACT_APP_API_PATH
 
 function Houses() {
   const [houses, setHouses] = useState([])
+
   const getHouses = async () => {
     let { data } = await axios.get(`${apiPath}/houses`)
-    console.log(data)
     setHouses(data)
-    console.log(data)
   }
   useEffect(() => {
     getHouses()
   }, [])
+
+  if (houses === undefined) {
+    return <div> 'loading'</div>
+  }
+
   return (
     <div className="container mx-auto">
       <Nav />
