@@ -18,56 +18,67 @@ function Filters({ setHouses }) {
     setSelectedOption(event.target.value) // Step 3
   }
 
+  // Locations filter
   const getLocations = async () => {
-    let { data } = await axios.get(`'${process.env.REACT_APP_API_PATH}/locations'`)
+    let { data } = await axios.get(
+      `${process.env.REACT_APP_API_PATH}/locations`
+    )
     setLocations(data)
   }
-  
+
   useEffect(() => {
     getLocations(locations)
   }, [])
 
-  const getFilteredHouses = async (obj) => {
-    const paramsObject = {}
-    if (obj.location) {
-      paramsObject.location = obj.location
-    }
-    if (obj.min_rooms) {
-      paramsObject.min_rooms = obj.min_rooms
-    }
-    if (obj.max_price) {
-      paramsObject.max_price = obj.max_price
-    }
-    if (obj.sort) {
-      paramsObject.sort = obj.sort
-    }
-    if (obj.search) {
-      paramsObject.searc = obj.search
-    }
-    let apiResponse = await axios.get(
-      `'${process.env.REACT_APP_API_PATH}/houses'`,
-      {
-        params: {
-          location: obj.location,
-          min_rooms: obj.min_rooms,
-          max_price: obj.max_price,
-          sort: obj.sort,
-          search: obj.search
-        }
-      }
-    )
-    console.log(apiResponse.data);
-    
-    return apiResponse.data
-  }
+  // const getFilteredHouses = async (obj) => {
+  //   const paramsObject = {}
+  //   if (obj.location) {
+  //     paramsObject.location = obj.location
+  //   }
+  //   if (obj.min_rooms) {
+  //     paramsObject.min_rooms = obj.min_rooms
+  //   }
+  //   if (obj.max_price) {
+  //     paramsObject.max_price = obj.max_price
+  //   }
+  //   if (obj.sort) {
+  //     paramsObject.sort = obj.sort
+  //   }
+  //   if (obj.search) {
+  //     paramsObject.searc = obj.search
+  //   }
+  //   let apiResponse = await axios.get(
+  //     `'${process.env.REACT_APP_API_PATH}/houses'`,
+  //     {
+  //       params: {
+  //         location: obj.location,
+  //         min_rooms: obj.min_rooms,
+  //         max_price: obj.max_price,
+  //         sort: obj.sort,
+  //         search: obj.search
+  //       }
+  //     }
+  //   )
+  //   console.log(apiResponse.data)
 
-  let filteredHouses
-  async function submitForm(e) {
+  //   return apiResponse.data
+  // }
+
+  // let filteredHouses
+  // async function submitForm(e) {
+  //   e.preventDefault()
+  //   let form = new FormData(e.target)
+  //   let formObject = Object.fromEntries(form.entries())
+  //   filteredHouses = await getFilteredHouses(formObject)
+  //   setHouses(filteredHouses)
+  // }
+
+  const submitForm = async (e) => {
     e.preventDefault()
     let form = new FormData(e.target)
     let formObject = Object.fromEntries(form.entries())
-    filteredHouses = await getFilteredHouses(formObject)
-    setHouses(filteredHouses)
+    const {data}  = await axios.get(`${process.env.REACT_APP_API_PATH}/houses`, {params: formObject})
+    setHouses(data)
   }
 
   return (
@@ -83,8 +94,8 @@ function Filters({ setHouses }) {
             <option selected value={selectedOption}>
               Any Location
             </option>
-            {locations.map((location, index) => (
-              <option key={index}>{location}</option>
+            {locations.map((l, i) => (
+              <option key={i}>{l}</option>
             ))}
           </select>
         </div>
@@ -97,12 +108,13 @@ function Filters({ setHouses }) {
             onChange={handleChange}
             className="bg-white text-sm text-black font-semibold flex-1"
           >
-            <option selected defaultValue={selectedOption}>
-              Any Rooms
-            </option>
-           { locations.map((location, index) => <option value={location} key={index}>{location}</option>
-            )}
-          </select>
+          <option value="">Any Rooms</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
         </div>
         {/* Max Price */}
         <div className="flex flex-1 bg-white px-2 py-2 border rounded items-center">
