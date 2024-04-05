@@ -11,24 +11,28 @@ const apiPath = process.env.REACT_APP_API_PATH
 function Houses() {
   const [houses, setHouses] = useState([])
 
+  // if (!houses) {
+  //   return <div> loading</div>
+  // }
+
   const getHouses = async () => {
     let { data } = await axios.get(`${apiPath}/houses`)
+    console.log(data);
+    
     setHouses(data)
   }
   useEffect(() => {
     getHouses()
   }, [])
 
-  if (houses === undefined) {
-    return <div> 'loading'</div>
-  }
+ 
 
   return (
     <div className="container mx-auto">
       <Nav />
       <Filters setHouses={setHouses} />
       <div className="grid grid-cols-5 gap-4 ">
-        {houses.map((house, i) => {
+        {houses.length === 0 ? <div> loading</div> : houses.map((house, i) => {
           return <HouseCard key={i} house={house} />
         })}
       </div>
