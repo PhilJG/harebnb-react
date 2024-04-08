@@ -16,11 +16,11 @@ function BookingComponent({ booking }) {
   )
 }
 
-function HouseCard({ listing, house }) {
+function HouseCard({ booking, listing, house }) {
   return (
     <div className=" border rounded hover:shadow">
       <Link to={`houses/${house.house_id}`}>
-        <img src={house.photo} className="border rounded" alt="" />
+        <img src={house.photo} className="border rounded-t-md" alt="" />
         <h6 className="text-lg font-bold">{house.location}</h6>
         <span className="text-sm text-slate-400">
           {house.rooms} rooms · {house.bathrooms} bathrooms

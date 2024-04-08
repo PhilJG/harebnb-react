@@ -2,24 +2,27 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+
 axios.defaults.withCredentials = true
 
 function Login() {
-  const [error, setError] = useState('')
   const navigate = useNavigate()
+
+  const [error, setError] = useState('')
+  
   async function submitForm(e) {
     e.preventDefault()
     let form = new FormData(e.target)
     let formObject = Object.fromEntries(form.entries())
-    const apiResponse = await axios.post(
-      `'${process.env.REACT_APP_API_PATH}/login'`,
+    const {data} = await axios.post(
+      `${process.env.REACT_APP_API_PATH}/login`,
       {
         email: formObject.email,
         password: formObject.password
       }
     )
-    if (apiResponse.data.error) {
-      setError(apiResponse.data.error)
+    if (data.error) {
+      setError(data.error)
     } else {
       navigate('/')
     }

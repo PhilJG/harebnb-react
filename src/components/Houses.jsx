@@ -28,7 +28,7 @@ function Houses() {
       <Nav />
       <Filters setHouses={setHouses} />
       <div className="grid grid-cols-5 gap-4 ">
-        {houses.length === 0 ? <div> loading</div> : houses.map((house, i) => {
+        {houses.length === 0 ? <div>loading houses...</div> : houses.map((house, i) => {
           return <HouseCard key={i} house={house} />
         })}
       </div>
