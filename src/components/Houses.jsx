@@ -6,8 +6,6 @@ import { useState, useEffect } from 'react'
 
 axios.defaults.withCredentials = true
 
-const apiPath = process.env.REACT_APP_API_PATH
-
 function Houses() {
   const [houses, setHouses] = useState([])
 
@@ -16,7 +14,7 @@ function Houses() {
   // }
 
   const getHouses = async () => {
-    let { data } = await axios.get(`${apiPath}/houses`)
+    let { data } = await axios.get(`${process.env.REACT_APP_API_PATH}/houses`)
     console.log(data);
     
     setHouses(data)
@@ -24,8 +22,6 @@ function Houses() {
   useEffect(() => {
     getHouses()
   }, [])
-
- 
 
   return (
     <div className="container mx-auto">

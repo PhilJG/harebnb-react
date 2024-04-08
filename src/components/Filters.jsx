@@ -5,18 +5,19 @@ import {
   faDollarSign,
   faSort
 } from '@fortawesome/free-solid-svg-icons'
-
-import axios from 'axios'
-
 import { useState, useEffect } from 'react'
+import axios from 'axios'
+axios.defaults.withCredentials = true
 
 function Filters({ setHouses }) {
+  
   const [locations, setLocations] = useState([])
-  const [selectedOption, setSelectedOption] = useState('') // Step 1
 
-  const handleChange = (event) => {
-    setSelectedOption(event.target.value) // Step 3
-  }
+  // const [selectedOption, setSelectedOption] = useState('') // Step 1
+
+  // const handleChange = (event) => {
+  //   setSelectedOption(event.target.value) // Step 3
+  // }
 
   // Locations filter
   const getLocations = async () => {
@@ -24,10 +25,12 @@ function Filters({ setHouses }) {
       `${process.env.REACT_APP_API_PATH}/locations`
     )
     setLocations(data)
+    console.log(data);
+    
   }
 
   useEffect(() => {
-    getLocations(locations)
+    getLocations()
   }, [])
 
   // const getFilteredHouses = async (obj) => {
@@ -77,7 +80,11 @@ function Filters({ setHouses }) {
     e.preventDefault()
     let form = new FormData(e.target)
     let formObject = Object.fromEntries(form.entries())
-    const {data}  = await axios.get(`${process.env.REACT_APP_API_PATH}/houses`, {params: formObject})
+    const {data}  = await axios.get(`${process.env.REACT_APP_API_PATH}/houses`, {
+      params: formObject
+    })
+    console.log(data);
+    
     setHouses(data)
   }
 
@@ -90,13 +97,14 @@ function Filters({ setHouses }) {
           <select
             name="location"
             className="bg-white text-sm text-black font-semibold flex-1"
+       
           >
-            <option selected value={selectedOption}>
+            <option value="" >
               Any Location
             </option>
-            {locations.map((l, i) => (
-              <option key={i}>{l}</option>
-            ))}
+            {
+            locations.map((l, i) => <option key={i}>{l}</option>
+            )}
           </select>
         </div>
         {/* Rooms */}
@@ -104,8 +112,6 @@ function Filters({ setHouses }) {
           <FontAwesomeIcon icon={faBed} className="mr-2" />
           <select
             name="min_rooms"
-            value={selectedOption}
-            onChange={handleChange}
             className="bg-white text-sm text-black font-semibold flex-1"
           >
           <option value="">Any Rooms</option>
@@ -133,7 +139,7 @@ function Filters({ setHouses }) {
             name="sort"
             className="bg-white text-sm text-black font-semibold flex-1"
           >
-            <option selected value={selectedOption}>
+            <option selected >
               sort by
             </option>
             <option value="price">Price: low to high</option>
