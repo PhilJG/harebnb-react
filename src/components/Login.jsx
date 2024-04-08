@@ -7,72 +7,49 @@ axios.defaults.withCredentials = true
 
 function Login() {
   const navigate = useNavigate()
+  const [formError, setFormError] = useState('')
 
-  const [error, setError] = useState('')
-  
-  async function submitForm(e) {
+  const  submitForm = async (e) => {
     e.preventDefault()
     let form = new FormData(e.target)
     let formObject = Object.fromEntries(form.entries())
     const {data} = await axios.post(
       `${process.env.REACT_APP_API_PATH}/login`,
-      {
-        email: formObject.email,
-        password: formObject.password
-      }
+    formObject
     )
     if (data.error) {
-      setError(data.error)
+      setFormError(data.error)
     } else {
       navigate('/')
     }
   }
   return (
-    <form onSubmit={(e) => submitForm(e)}>
-      <div className="flex mx-auto justify-center m-4 pb-3">
-        <div className="border p-4">
-          <div className="flex items-center justify-center">
-            <img
-              src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399114/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/logo-airbnb.png
-"
-              alt="airbnb logo"
-              className="h-6 self-center"
-            />
-          </div>
-          <div className="m-3 pb-3">
-            <div>Email</div>
-            <div>
-              <input name="email" type="email" className="border" />
-            </div>
-          </div>
-          <div className="m-3 pb-3">
-            <div>
-              <div>Password</div>
-              <input name="password" type="password" className="border" />
-            </div>
-          </div>
-          <div className="m-3 pb-3">
-            <div className="flex items-center justify-center text-white bg bg-red-400 rounded-md p-4">
-              <button>Login</button>
-            </div>
-          </div>
-          <span className="text-red-500 text-xs">{error}</span>
-          <div className="flex justify-start m-3 pb-3 text-xs">
-            <div>New to Airbnb?</div>
-            <div>
-              <Link
-                to="/signup"
-                className="text-red-500  text-xs  underline
-              md:underline-offset-2 "
-              >
-                {' '}
-                Create an Account
-              </Link>
-            </div>
-          </div>
+    <div className="w-80 mx-auto mt-20">
+    <div className="p-6 border rounded-lg">
+      <img src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399114/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/logo-airbnb.png" alt="Airbnb" className="h-6 mx-auto" />
+      <form onSubmit={e => submitForm(e)}>
+
+        <div className="my-5">
+          <label className="text-slate-500 text-sm">Email</label>
+          <input name="email" type="text" className="border px-3 py-2 w-full rounded" autoFocus />
         </div>
+
+        <div className="my-5">
+          <label className="text-slate-500 text-sm">Password</label>
+          <input name="password" type="password" className="border px-3 py-2 w-full rounded" />
+        </div>
+
+        <button className="bg-rose-400 text-white py-2 px-3 w-full rounded">Login</button>
+        {
+          formError && <span className="text-red-400 text-xs text-center block mt-2">{formError}</span>
+        }
+      </form>
+  
+      <div className="mt-5">
+        <span className="text-xs">New to Airbnb? <Link to="/signup" className="text-rose-500 underline">Create an Account</Link></span>
       </div>
-    </form>
+    </div>
+  </div>
   )
 }
 
