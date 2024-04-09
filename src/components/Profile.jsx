@@ -1,31 +1,56 @@
 import Nav from './Nav'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+
 
 function Profile() {
-  const user = {
-    firstName: 'Pepe',
-    lastName: 'the King Prawn',
-    email: 'pepe@prawnholdings.com',
-    picture:
-      'https://www.generatormix.com/images/muppets/pepe-the-king-prawn.jpg'
+  const [user, setUser] = useState({})
+  const [saved, setSaved] = useState(false)
+  const navigate = useNavigate()
+  
+  const getProfile = async () => {
+    const {data} = await axios.get(`/profile`)
+    setUser(data)
   }
-  const [picture, setPicture] = useState(user.picture)
+  
+  const updatePicture = url => {
+    setUser({...user, picture: user.profile_pic })
+  }
+  
+  const updateUser = async (e) => {
+    e.preventDefault()
+    setSaved(false)
+    const form = new FormData(e.target)
+    let formObject = Object.fromEntries(form.entries())
+    const { data } = await axios.patch(`${process.env.REACT_APP_API_URL}/profile`, formObject)
+    setSaved(true)
+  }
+
+  const logout = async () => {
+    await axios.get(`${process.env.REACT_APP_API_URL}/logout`)
+    navigate('/login')
+  }
+  // Effects
+  useEffect(() => {
+    getProfile()
+  }, [])
 
   return (
     <div className="container mx-auto">
       <Nav />
-      <form className="flex flex-col gap-2 justify-start border-2 rounded p-5 mt-4">
+      <form onSubmit={updateUser} className="flex flex-col gap-2 justify-start border-2 rounded p-5 mt-4">
         <h1 className="font-bold text-2xl">Your Profile</h1>
         <div className="flex items-center">
           <img
-            src={picture}
+            src={user.picture}
             alt="User profile pic"
             className="w-20 rounded-full"
           />
           <input
             className="border-2 px-4 py-2 rounded w-full ml-4"
             type="text"
-            value={picture}
+            value={user.picture}
             onChange={(e) => setPicture(e.target.value)}
           />
         </div>
