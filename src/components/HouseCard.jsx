@@ -18,9 +18,11 @@ function BookingComponent({ booking }) {
 
 function HouseCard({ booking, listing, house }) {
   return (
-    <div className=" border rounded hover:shadow">
+    <div className="border rounded hover:shadow">
       <Link to={`houses/${house.house_id}`}>
         <img src={house.photo} className="border rounded-t-md" alt="" />
+        <div className="p-3">
+
         <h6 className="text-lg font-bold">{house.location}</h6>
         <span className="text-sm text-slate-400">
           {house.rooms} rooms · {house.bathrooms} bathrooms
@@ -39,16 +41,16 @@ function HouseCard({ booking, listing, house }) {
           <div>
             {house.reviews}
             <FontAwesomeIcon
-              className="text-transoarent"
               icon={faCommentDots}
-            />
+              />
           </div>
+        </div>
         </div>
         {house.booking ? (
           <BookingComponent booking={house.booking} price={house.price} />
-        ) : (
-          ''
-        )}
+          ) : (
+            ''
+            )}
       </Link>
       {listing ? (
         <span>
@@ -57,8 +59,9 @@ function HouseCard({ booking, listing, house }) {
         </span>
       ) : (
         ''
-      )}
+        )}
     </div>
+        
   )
 }
 export default HouseCard

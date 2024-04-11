@@ -1,6 +1,8 @@
 import Nav from './Nav'
 import HouseCard from './HouseCard'
 import axios from 'axios'
+import LoadSpinner from './LoadSpinner'
+
 import { useEffect, useState } from 'react'
 
 axios.defaults.withCredentials = true 
@@ -23,7 +25,7 @@ function Bookings() {
       <Nav />
       <div className="grid grid-cols-5 gap-4">
         {
-        bookings.length === 0 ? <span>loading bookings...</span> :
+        bookings.length === 0 ? <LoadSpinner />:
            bookings.map((booking, index) => {
           return <HouseCard house={booking} key={index} booking={true} />
         })
