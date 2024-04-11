@@ -5,6 +5,7 @@ import {
   faComment
 } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
+import fetchBaseUrl from '../_utils/fetch.js'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
@@ -28,7 +29,9 @@ function HalfStar({ review }) {
 }
 
 function Review({ review }) {
-  let rawDate = review.date
+  console.log(review);
+  
+  let rawDate = review.review_date
   let modifiedDate = rawDate.substring(0, 10)
   return (
     <div className="p-4 rounded border-2 ">
@@ -61,9 +64,13 @@ function Review({ review }) {
 function Reviews() {
   const { id } = useParams()
   const [reviews, setReviews] = useState([])
+
+  const href = window.location.href
+  const baseUrl = fetchBaseUrl(href)
+
   const getReviews = async () => {
     let { data } = await axios.get(
-      `'${process.env.REACT_APP_API_PATH}reviews'` +
+      `${baseUrl}/reviews` +
         (id ? '?house_id=' + id : '')
     )
     setReviews(data)

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+import fetchBaseUrl from '../_utils/fetch.js'
 import axios from 'axios'
 
 axios.defaults.withCredentials = true
@@ -9,6 +11,9 @@ function Login() {
   const navigate = useNavigate()
   const [formError, setFormError] = useState('')
 
+  const href = window.location.href
+  const baseUrl = fetchBaseUrl(href)
+
   const  submitForm = async (e) => {
     e.preventDefault()
     let form = new FormData(e.target)
@@ -16,8 +21,8 @@ function Login() {
     
 
     const {data} = await axios.post(
-      `${process.env.REACT_APP_API_PATH}/login`,
-    formObject
+      `${baseUrl}/login`,
+    {data: formObject}
     )
 
     console.log(data);

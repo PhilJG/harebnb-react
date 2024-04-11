@@ -32,7 +32,6 @@ function Houses() {
   
   const baseUrl = fetchBaseUrl(href)
   
-
   const getHouses = async () => {
     console.log(href);
     

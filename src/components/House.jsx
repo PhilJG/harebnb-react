@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+
 import axios from 'axios'
+import fetchBaseUrl from '../_utils/fetch.js'
 
 import Nav from './Nav'
 import Gallery from './Gallery'
@@ -81,11 +83,15 @@ function House() {
     host: {}
   })
 
+  const href = window.location.href
+  
+  const baseUrl = fetchBaseUrl(href)
+
   const params = useParams()
 
   const getHouse = async () => {
     let { data } = await axios.get(
-      `${process.env.REACT_APP_API_PATH}/houses/${params.id}`
+      `${baseUrl}/houses/${params.id}`
     )
     setHouse(data)
   }
@@ -111,7 +117,7 @@ function House() {
             {house.rooms} rooms . {house.bathrooms} bathrooms
           </div>
           <div className="flex justify-start  my-4">
-            <img src={house.host.picture} className="rounded-full mr-2 h-12" />
+            {/* <img src={house.host.picture} className="rounded-full mr-2 h-12" /> */}
             <div>
               <div className="text-sm">Hosted by</div>
               <div className="text-sm">
