@@ -1,16 +1,24 @@
 import Nav from './Nav'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import axios from 'axios'
 
+import fetchBaseUrl from '../_utils/fetch.js'
 
 function Profile() {
   const [user, setUser] = useState({})
   const [saved, setSaved] = useState(false)
+
   const navigate = useNavigate()
   
+  const href = window.location.href
+  const baseUrl = fetchBaseUrl(href)
+
   const getProfile = async () => {
-    const {data} = await axios.get(`/profile`)
+    const {data} = await axios.get(`${baseUrl}/profile`)
+    console.log(data);
+    
     setUser(data)
   }
   

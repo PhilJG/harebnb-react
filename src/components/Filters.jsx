@@ -17,7 +17,6 @@ function Filters({ setHouses }) {
   const [locations, setLocations] = useState([])
 
   const href = window.location.href
-  
   const baseUrl = fetchBaseUrl(href)
 
   // const [selectedOption, setSelectedOption] = useState('') // Step 1
