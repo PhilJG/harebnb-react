@@ -5,6 +5,9 @@ import Filters from './Filters'
 import LoadSpinner from './LoadSpinner'
 
 import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+
+import fetchBaseUrl from '../_utils/fetch.js'
 
 axios.defaults.withCredentials = true
 
@@ -15,15 +18,31 @@ function Houses() {
   //   return <div> loading</div>
   // }
 
-   const getHouses = async () => {
+  //  const getHouses = async () => {
     
-    const {data} = await axios.get(`http://localhost:4100/houses`)
+  //   const {data} = await axios.get(`http://localhost:4100/houses`)
 
-    // let { data } = await axios.get(`${process.env.REACT_APP_API_PATH}/houses`)
-    // console.log(data);
+  //   // let { data } = await axios.get(`${process.env.REACT_APP_API_PATH}/houses`)
+  //   // console.log(data);
   
+  //   setHouses(data)
+  //   }
+
+  const href = window.location.href
+  
+  const baseUrl = fetchBaseUrl(href)
+  
+
+  const getHouses = async () => {
+    console.log(href);
+    
+    const {data} = await axios.get(`${baseUrl}/houses`)
     setHouses(data)
-    }
+  }
+
+  console.log('houses', houses);
+  
+
   useEffect(() => {
     getHouses()
   }, [])

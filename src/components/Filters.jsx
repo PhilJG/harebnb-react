@@ -6,12 +6,19 @@ import {
   faSort
 } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
+
 import axios from 'axios'
+import fetchBaseUrl from '../_utils/fetch.js'
+
 axios.defaults.withCredentials = true
 
 function Filters({ setHouses }) {
   
   const [locations, setLocations] = useState([])
+
+  const href = window.location.href
+  
+  const baseUrl = fetchBaseUrl(href)
 
   // const [selectedOption, setSelectedOption] = useState('') // Step 1
 
@@ -21,8 +28,8 @@ function Filters({ setHouses }) {
 
   // Locations filter
   const getLocations = async () => {
-    const {data} = await axios.get(
-      `http://localhost:4100/locations`
+    let { data } = await axios.get(
+      `${baseUrl}/locations`
     )
     setLocations(data)
     console.log(data);
@@ -80,7 +87,7 @@ function Filters({ setHouses }) {
     e.preventDefault()
     let form = new FormData(e.target)
     let formObject = Object.fromEntries(form.entries())
-    const {data}  = await axios.get(`http://localhost:4100/houses`, {
+    const {data}  = await axios.get(`${process.env.REACT_APP_API_PATH}/houses`, {
       params: formObject
     })
     console.log(data);
