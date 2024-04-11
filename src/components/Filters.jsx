@@ -21,8 +21,8 @@ function Filters({ setHouses }) {
 
   // Locations filter
   const getLocations = async () => {
-    let { data } = await axios.get(
-      `${process.env.REACT_APP_API_PATH}/locations`
+    const {data} = await axios.get(
+      `http://localhost:4100/locations`
     )
     setLocations(data)
     console.log(data);
@@ -80,7 +80,7 @@ function Filters({ setHouses }) {
     e.preventDefault()
     let form = new FormData(e.target)
     let formObject = Object.fromEntries(form.entries())
-    const {data}  = await axios.get(`${process.env.REACT_APP_API_PATH}/houses`, {
+    const {data}  = await axios.get(`http://localhost:4100/houses`, {
       params: formObject
     })
     console.log(data);

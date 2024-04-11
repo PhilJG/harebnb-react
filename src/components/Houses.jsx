@@ -15,12 +15,15 @@ function Houses() {
   //   return <div> loading</div>
   // }
 
-  const getHouses = async () => {
-    let { data } = await axios.get(`${process.env.REACT_APP_API_PATH}/houses`)
-    console.log(data);
+   const getHouses = async () => {
     
+    const {data} = await axios.get(`http://localhost:4100/houses`)
+
+    // let { data } = await axios.get(`${process.env.REACT_APP_API_PATH}/houses`)
+    // console.log(data);
+  
     setHouses(data)
-  }
+    }
   useEffect(() => {
     getHouses()
   }, [])
