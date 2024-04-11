@@ -13,10 +13,15 @@ function Login() {
     e.preventDefault()
     let form = new FormData(e.target)
     let formObject = Object.fromEntries(form.entries())
+    
+
     const {data} = await axios.post(
       `${process.env.REACT_APP_API_PATH}/login`,
     formObject
     )
+
+    console.log(data);
+
     if (data.error) {
       setFormError(data.error)
     } else {

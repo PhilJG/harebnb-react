@@ -2,6 +2,8 @@ import axios from 'axios'
 import Nav from './Nav'
 import HouseCard from './HouseCard'
 import Filters from './Filters'
+import LoadSpinner from './LoadSpinner'
+
 import { useState, useEffect } from 'react'
 
 axios.defaults.withCredentials = true
@@ -28,7 +30,7 @@ function Houses() {
       <Nav />
       <Filters setHouses={setHouses} />
       <div className="grid grid-cols-5 gap-4 ">
-        {houses.length === 0 ? <div>loading houses...</div> : houses.map((house, i) => {
+        {houses.length === 0 ? <LoadSpinner /> : houses.map((house, i) => {
           return <HouseCard key={i} house={house} />
         })}
       </div>
