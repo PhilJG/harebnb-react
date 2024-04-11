@@ -139,7 +139,7 @@ function Filters({ setHouses }) {
             name="sort"
             className="bg-white text-sm text-black font-semibold flex-1"
           >
-            <option selected >
+            <option value='' >
               sort by
             </option>
             <option value="price">Price: low to high</option>
