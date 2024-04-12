@@ -46,7 +46,7 @@ function Nav() {
             My Listings
           </div>
         </Link>
-        <Link to="/profile">
+      {user !== undefined ? <Link to="/profile">
           <div className="flex justify-between gap-1 border rounded px-2 py-1 hover:border-[#fb7185]">
             <img
               src={user.profile_pic}
@@ -55,7 +55,15 @@ function Nav() {
             />
             <span className="text-sm">Profile</span>
           </div>
-        </Link>
+        </Link> : 
+        <Link to="/login">
+                    <div className="flex justify-between gap-1 border rounded px-2 py-1 hover:border-[#fb7185]">
+                    <span className="text-sm">
+          Login
+          </span>
+          </div>
+          </Link>
+        }
       </div>
     </div>
   )
