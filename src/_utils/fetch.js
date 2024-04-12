@@ -1,4 +1,4 @@
-const  getBaseUrl = (string) => {
+const getBaseUrl = (string) => {
     if(string.includes('localhost')){
         return 'http://localhost:4100'
     }

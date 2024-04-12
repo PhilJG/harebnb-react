@@ -14,9 +14,7 @@ function Nav() {
   
   const getProfile = async () => {
     const {data} = await axios.get(`${baseUrl}/profile`)
-    
     setUser(data)
-    console.log(data); 
   }
     // Effects
     useEffect(() => {

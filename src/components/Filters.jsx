@@ -19,68 +19,17 @@ function Filters({ setHouses }) {
   const href = window.location.href
   const baseUrl = fetchBaseUrl(href)
 
-  // const [selectedOption, setSelectedOption] = useState('') // Step 1
-
-  // const handleChange = (event) => {
-  //   setSelectedOption(event.target.value) // Step 3
-  // }
-
   // Locations filter
   const getLocations = async () => {
     let { data } = await axios.get(
       `${baseUrl}/locations`
     )
     setLocations(data)
-    console.log(data);
-    
   }
 
   useEffect(() => {
     getLocations()
   }, [])
-
-  // const getFilteredHouses = async (obj) => {
-  //   const paramsObject = {}
-  //   if (obj.location) {
-  //     paramsObject.location = obj.location
-  //   }
-  //   if (obj.min_rooms) {
-  //     paramsObject.min_rooms = obj.min_rooms
-  //   }
-  //   if (obj.max_price) {
-  //     paramsObject.max_price = obj.max_price
-  //   }
-  //   if (obj.sort) {
-  //     paramsObject.sort = obj.sort
-  //   }
-  //   if (obj.search) {
-  //     paramsObject.searc = obj.search
-  //   }
-  //   let apiResponse = await axios.get(
-  //     `'${process.env.REACT_APP_API_PATH}/houses'`,
-  //     {
-  //       params: {
-  //         location: obj.location,
-  //         min_rooms: obj.min_rooms,
-  //         max_price: obj.max_price,
-  //         sort: obj.sort,
-  //         search: obj.search
-  //       }
-  //     }
-  //   )
-  //   console.log(apiResponse.data)
-
-  //   return apiResponse.data
-  // }
-
-  // let filteredHouses
-  // async function submitForm(e) {
-  //   e.preventDefault()
-  //   let form = new FormData(e.target)
-  //   let formObject = Object.fromEntries(form.entries())
-  //   filteredHouses = await getFilteredHouses(formObject)
-  //   setHouses(filteredHouses)
-  // }
 
   const submitForm = async (e) => {
     e.preventDefault()

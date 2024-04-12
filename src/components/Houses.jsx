@@ -33,14 +33,10 @@ function Houses() {
   const baseUrl = fetchBaseUrl(href)
   
   const getHouses = async () => {
-    console.log(href);
     
     const {data} = await axios.get(`${baseUrl}/houses`)
     setHouses(data)
-  }
-
-  console.log('houses', houses);
-  
+  }  
 
   useEffect(() => {
     getHouses()

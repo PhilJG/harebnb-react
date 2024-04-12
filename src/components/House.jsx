@@ -7,6 +7,7 @@ import fetchBaseUrl from '../_utils/fetch.js'
 import Nav from './Nav'
 import Gallery from './Gallery'
 import Reviews from './Reviews'
+import LoadSpinner from './LoadSpinner'
 
 function BookHouse({ house }) {
   const [startDate, setStartDate] = useState('')
@@ -78,37 +79,34 @@ function BookHouse({ house }) {
 }
 
 function House() {
-  const [house, setHouse] = useState({
-    images: [],
-    host: {}
-  })
+  const [house, setHouse] = useState(undefined)
 
   const href = window.location.href
-  
   const baseUrl = fetchBaseUrl(href)
 
   const params = useParams()
-
+  
   const getHouse = async () => {
     let { data } = await axios.get(
       `${baseUrl}/houses/${params.id}`
     )
+    console.log(data);
+    
     setHouse(data)
   }
+
 
   useEffect(() => {
     getHouse()
   }, [])
 
-  if (house === undefined) {
-    return <div> 'loading'</div>
-  }
 
   return (
     <div className="container mx-auto">
       <Nav />
-      <Gallery house={house} />
-
+      {!house ? <LoadSpinner /> : 
+      <>
+      <Gallery images={house.house_photos} />
       <div className="grid grid-cols-3 gap-36 pb-10 mx-2">
         <div className="col-span-2">
           {/* <div className=""> */}
@@ -122,7 +120,7 @@ function House() {
               <div className="text-sm">Hosted by</div>
               <div className="text-sm">
                 <strong>
-                  {house.host.firstName} {house.host.lastName}
+                  {/* {house.host.firstName} {house.host.lastName} */}
                 </strong>
               </div>
             </div>
@@ -133,7 +131,9 @@ function House() {
         </div>
         <BookHouse house={house} />
       </div>
-      <Reviews />
+      <Reviews /> 
+      </>
+      }
     </div>
   )
 }

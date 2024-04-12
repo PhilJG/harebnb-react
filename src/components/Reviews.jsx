@@ -9,6 +9,10 @@ import fetchBaseUrl from '../_utils/fetch.js'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
+import getBaseUrl from '../_utils/fetch.js'
+
+
+
 function FullStar({ review }) {
   let roundedrating
   let stars = []
@@ -28,25 +32,36 @@ function HalfStar({ review }) {
   }
 }
 
-function Review({ review }) {
-  console.log(review);
+function Review({ review, baseUrl }) {
+  const [reviewer, setReviewer] = useState()
   
   let rawDate = review.review_date
   let modifiedDate = rawDate.substring(0, 10)
+
+  const getReviewer = async (user_id) => {
+    let { data } = await axios.get(
+      `${baseUrl}/users/:${user_id}`)
+      console.log(data);
+      
+  }
+  useEffect(() => {
+    getReviewer()
+  }, [])
+
   return (
     <div className="p-4 rounded border-2 ">
       <div className="flex ">
         <div className="flex flex-col">
           <div className="flex">
             <img
-              src={review.author.picture}
+              // src={review.user_id.profile_pic}
               alt="User profile pic"
               className="rounded-full h-10 w-10 mr-2"
             />
             <div className="flex flex-col">
               <p className="font-thin inline">{modifiedDate}</p>
               <p>
-                {review.author.firstName} {review.author.lastName}
+                {/* {review.user_id.first_name} {review.author.lastName} */}
               </p>
             </div>
           </div>
@@ -74,10 +89,12 @@ function Reviews() {
         (id ? '?house_id=' + id : '')
     )
     setReviews(data)
+    console.log(data);
   }
   useEffect(() => {
     getReviews()
   }, [])
+
   return (
     <div className="container mx-auto grid grid-cols-3 gap-36 border-t-2">
       <div className="flex flex-col col-span-2">
@@ -98,7 +115,7 @@ function Reviews() {
           </div>
           <div className="flex flex-col gap-1 ">
             {reviews.map((review, index) => (
-              <Review key={index} review={review} />
+              <Review key={index} review={review} baseUrl={baseUrl}/>
             ))}
           </div>
         </div>
@@ -118,10 +135,10 @@ function Reviews() {
             <div className="border rounded border-gray-300 mt-3">
               <div className="">
                 <textarea
+                value='Please leave a review...'
                   rows="4"
                   className="bg-transparent resize-none outline-none text-gray-300 p-2 "
                 >
-                  Please leave a review...
                 </textarea>
               </div>
             </div>

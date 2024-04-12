@@ -1,8 +1,10 @@
 import { useState } from 'react'
 
-function Gallery({ house }) {
-  let { images } = house
+function Gallery({ images }) {
+console.log(images.length);
+
   const [selectedImage, setSelectedImage] = useState(images[0])
+  
   return (
     <div className="grid grid-cols-2 gap-5 p-2">
       <img
