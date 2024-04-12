@@ -28,7 +28,7 @@ function Login() {
     console.log(data);
 
     if (data.error) {
-      setFormError(data.error)
+      setFormError(data.error.message)
     } else {
       navigate('/')
     }

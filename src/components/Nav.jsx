@@ -1,7 +1,28 @@
 import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import fetchBaseUrl from '../_utils/fetch.js'
+
+
+import axios from 'axios'
 
 function Nav() {
+  const [user, setUser] = useState('')
 
+  const href = window.location.href
+  const baseUrl = fetchBaseUrl(href)
+
+  
+  const getProfile = async () => {
+    const {data} = await axios.get(`${baseUrl}/profile`)
+    
+    setUser(data)
+    console.log(data); 
+  }
+    // Effects
+    useEffect(() => {
+      getProfile()
+    }, [])
+  
 
   return (
     <div className="flex justify-between">
@@ -28,7 +49,7 @@ function Nav() {
         <Link to="/profile">
           <div className="flex justify-between gap-1 border rounded px-2 py-1 hover:border-[#fb7185]">
             <img
-              src="https://randomuser.me/api/portraits/men/84.jpg"
+              src={user.profile_pic}
               alt="User profile pic"
               className="rounded-full h-5 w-5 border"
             />

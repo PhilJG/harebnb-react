@@ -17,7 +17,6 @@ function Profile() {
 
   const getProfile = async () => {
     const {data} = await axios.get(`${baseUrl}/profile`)
-    console.log(data);
     
     setUser(data)
   }
@@ -51,14 +50,14 @@ function Profile() {
         <h1 className="font-bold text-2xl">Your Profile</h1>
         <div className="flex items-center">
           <img
-            src={user.picture}
+            src={user.profile_pic}
             alt="User profile pic"
             className="w-20 rounded-full"
           />
           <input
             className="border-2 px-4 py-2 rounded w-full ml-4"
             type="text"
-            value={user.picture}
+            placeholder={user.profile_pic}
             onChange={(e) => setPicture(e.target.value)}
           />
         </div>
@@ -66,19 +65,19 @@ function Profile() {
         <input
           className="border-2 px-4 py-2 p-1 rounded"
           type="text"
-          value={user.firstName}
+          placeholder={user.first_name}
         />
         <label>Last Name</label>
         <input
           className="border-2 px-4 py-2 p-1 rounded"
           type="text"
-          value={user.lastName}
+          placeholder={user.last_name}
         />
         <label>Email</label>
         <input
           className="border-2 px-4 py-2 p-1 rounded"
           type="email"
-          value={user.email}
+          placeholder={user.email}
         />
         <button className="rounded p-3 mt-6 text-white w-32 bg-red-400">
           Save Changes
