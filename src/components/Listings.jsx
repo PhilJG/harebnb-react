@@ -19,13 +19,8 @@ function CreateListing() {
   const createHouse = async (e) => {
     e.preventDefault()
     const form = new FormData(e.target)
-    console.log(form);
-    
     let photos = form.getAll("house_photos")
-    console.log(photos);
-    
     let formObject = Object.fromEntries(form.entries())
-    console.log(formObject);
     formObject.house_photos = photos
     
     const {data} = await axios.post(`${baseUrl}/houses`, formObject)
@@ -74,15 +69,15 @@ function CreateListing() {
         <div className="flex flex-col">
           <div className="px-1">Photos</div>
 
-          <input type="url" className="border-2 rounded p-2 my-1" />
-          <input type="url" className="border-2 rounded p-2 my-1" />
-          <input type="url" className="border-2 rounded p-2 my-1" />
-          <input type="url" className="border-2 rounded p-2 my-1" />
-          <input type="url" className="border-2 rounded p-2 my-1" />
-          <input type="url" className="border-2 rounded p-2 my-1" />
-          <input type="url" className="border-2 rounded p-2 my-1" />
-          <input type="url" className="border-2 rounded p-2 my-1" />
-          <input type="url" className="border-2 rounded p-2 my-1" />
+          <input name="house_photos" type="url" className="border-2 rounded p-2 my-1" />
+          <input name="house_photos" type="url" className="border-2 rounded p-2 my-1" />
+          <input name="house_photos" type="url" className="border-2 rounded p-2 my-1" />
+          <input name="house_photos" type="url" className="border-2 rounded p-2 my-1" />
+          <input name="house_photos" type="url" className="border-2 rounded p-2 my-1" />
+          <input name="house_photos" type="url" className="border-2 rounded p-2 my-1" />
+          <input name="house_photos" type="url" className="border-2 rounded p-2 my-1" />
+          <input name="house_photos" type="url" className="border-2 rounded p-2 my-1" />
+          <input name="house_photos" type="url" className="border-2 rounded p-2 my-1" />
         </div>
       </div>
     </form>
