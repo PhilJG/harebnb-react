@@ -45,7 +45,7 @@ function Filters({ setHouses }) {
 
   return (
     <form onSubmit={(e) => submitForm(e)}>
-      <div className="flex justify-between bg-slate-100 p-2 my-2 gap-2">
+      <div className="flex lg:flex-row flex-col justify-between bg-slate-100 p-2 my-2 gap-2">
         {/* Location */}
         <div className="flex flex-1 bg-white px-2 py-2 border rounded items-center">
           <FontAwesomeIcon icon={faHouse} className="mr-2" />
