@@ -17,8 +17,6 @@ function BookingComponent({ booking }) {
 }
 
 function HouseCard({ booking, listing, house }) {  
-  console.log(house.house_photos);
-  
  
   return (
     <div className="border rounded hover:shadow">
