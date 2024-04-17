@@ -1,9 +1,31 @@
+import {useState, useEffect} from 'react'
+
 import Nav from './Nav'
 import HouseCard from './HouseCard'
 
-function EditListing() {
+import axios from 'axios'
+import fetchBaseUrl from '../_utils/fetch.js'
+
+axios.defaults.withCredentials = true
+
+function CreateListing() {
+  const [houses, setNewHouse] = useState([])
+
+  const href = window.location.href
+  const baseUrl = fetchBaseUrl(href)
+  
+  const createNewListing = async () => {
+    const {data} = await axios.post(`${baseUrl}/houses`)
+    setNewHouse(data)
+  }  
+
+  useEffect(() => {
+    createNewListing()
+  }, [])
+
+
   return (
-    <form className="p-4 mx-2 border-2 rounded">
+    <form  className="p-4 mx-2 border-2 rounded">
       <h1 className="my-1 text-2xl">List a house</h1>
       <div className="grid grid-cols-2">
         <div className=" mr-28">
@@ -51,42 +73,26 @@ function EditListing() {
 }
 
 function Listings() {
-  let listings = [
-    {
-      location: 'Phuket, Thailand',
-      rooms: 2,
-      bathrooms: 2,
-      price: 120,
-      rating: 4,
-      reviews: 34,
-      photo:
-        'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png'
-    },
-    {
-      location: 'Maldives, India',
-      rooms: 3,
-      bathrooms: 2,
-      price: 200,
-      rating: 5,
-      reviews: 45,
-      photo:
-        'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-    },
-    {
-      location: 'Bali, Indonesia',
-      rooms: 4,
-      bathrooms: 3,
-      price: 250,
-      rating: 4.5,
-      reviews: 50,
-      photo:
-        'https://images.unsplash.com/photo-1604999333679-b86d54738315?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-    }
-  ]
+  const [listings, setListing] = useState([])
+
+  const href = window.location.href
+  const baseUrl = fetchBaseUrl(href)
+  
+  const getLisitings = async () => {
+    const {data} = await axios.get(`${baseUrl}/listings`)
+    console.log(data);
+    
+    setListing(data)
+  }  
+
+  useEffect(() => {
+    getLisitings()
+  }, [])
+
   return (
     <div className="container mx-auto">
       <Nav />
-      <EditListing />
+      <CreateListing />
       <div className="grid grid-cols-5 gap-4 mx-2">
         {listings.map((house, id) => (
           <HouseCard house={house} listing={true} key={id} />
