@@ -38,9 +38,10 @@ function Profile() {
   }
 
   const logout = async () => {
-    await axios.get(`${process.env.REACT_APP_API_URL}/logout`)
+    await axios.get(`${baseUrl}/logout`)
     navigate('/login')
   }
+
   // Effects
   useEffect(() => {
     getProfile()
@@ -89,9 +90,9 @@ function Profile() {
           <button className="rounded p-3 mt-6 text-white w-32 bg-red-400">
             Save Changes
           </button>
-          <button className="rounded p-3 mt-6  w-32 border-2">Logout</button>
         </div>
       </form>
+          <button onClick={logout} className="rounded p-3 mt-6  w-32 border-2">Logout</button>
     </div>
   )
 }
