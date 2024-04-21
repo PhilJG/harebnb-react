@@ -14,20 +14,6 @@ axios.defaults.withCredentials = true
 function Houses() {
   const [houses, setHouses] = useState([])
 
-  // if (!houses) {
-  //   return <div> loading</div>
-  // }
-
-  //  const getHouses = async () => {
-    
-  //   const {data} = await axios.get(`http://localhost:4100/houses`)
-
-  //   // let { data } = await axios.get(`${process.env.REACT_APP_API_PATH}/houses`)
-  //   // console.log(data);
-  
-  //   setHouses(data)
-  //   }
-
   const href = window.location.href
   
   const baseUrl = fetchBaseUrl(href)
@@ -36,11 +22,15 @@ function Houses() {
     
     const {data} = await axios.get(`${baseUrl}/houses`)
     setHouses(data)
+    console.log(houses);
+    
   }  
 
   useEffect(() => {
     getHouses()
+    
   }, [])
+  console.log(houses);
 
   return (
     <div className="container mx-auto">

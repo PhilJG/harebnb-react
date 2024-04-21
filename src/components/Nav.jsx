@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import fetchBaseUrl from '../_utils/fetch.js'
 
-
 import axios from 'axios'
 
 function Nav() {
@@ -11,16 +10,14 @@ function Nav() {
   const href = window.location.href
   const baseUrl = fetchBaseUrl(href)
 
-  
   const getProfile = async () => {
-    const {data} = await axios.get(`${baseUrl}/profile`)
+    const { data } = await axios.get(`${baseUrl}/profile`)
     setUser(data)
   }
-    // Effects
-    useEffect(() => {
-      getProfile()
-    }, [])
-  
+  // Effects
+  useEffect(() => {
+    getProfile()
+  }, [])
 
   return (
     <div className="flex justify-between">
@@ -44,24 +41,24 @@ function Nav() {
             My Listings
           </div>
         </Link>
-      {user !== undefined ? <Link to="/profile">
-          <div className="flex justify-between gap-1 border rounded px-2 py-1 hover:border-[#fb7185]">
-            <img
-              src={user.profile_pic}
-              alt="User profile pic"
-              className="rounded-full h-5 w-5 border"
-            />
-            <span className="text-sm">Profile</span>
-          </div>
-        </Link> : 
-        <Link to="/login">
-                    <div className="flex justify-between gap-1 border rounded px-2 py-1 hover:border-[#fb7185]">
-                    <span className="text-sm">
-          Login
-          </span>
-          </div>
+        {user ? (
+          <Link to="/profile">
+            <div className="flex justify-between gap-1 border rounded px-2 py-1 hover:border-[#fb7185]">
+              <img
+                src={user.profile_pic}
+                alt="User profile pic"
+                className="rounded-full h-5 w-5 border"
+              />
+              <span className="text-sm">Profile</span>
+            </div>
           </Link>
-        }
+        ) : (
+          <Link to="/login">
+            <div className="flex justify-between gap-1 border rounded px-2 py-1 hover:border-[#fb7185]">
+              <span className="text-sm">Login</span>
+            </div>
+          </Link>
+        )}
       </div>
     </div>
   )

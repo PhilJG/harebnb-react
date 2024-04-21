@@ -41,7 +41,6 @@ function Review({ review, baseUrl }) {
   const getReviewer = async (user_id) => {
     let { data } = await axios.get(
       `${baseUrl}/users/:${user_id}`)
-      console.log(data);
       
   }
   useEffect(() => {
