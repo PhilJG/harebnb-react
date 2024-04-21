@@ -11,26 +11,29 @@ function Profile() {
   const [saved, setSaved] = useState(false)
 
   const navigate = useNavigate()
-  
+
   const href = window.location.href
   const baseUrl = fetchBaseUrl(href)
 
   const getProfile = async () => {
-    const {data} = await axios.get(`${baseUrl}/profile`)
-    
+    const { data } = await axios.get(`${baseUrl}/profile`)
+
     setUser(data)
   }
-  
-  const updatePicture = url => {
-    setUser({...user, picture: user.profile_pic })
+
+  const updatePicture = (url) => {
+    setUser({ ...user, picture: user.profile_pic })
   }
-  
+
   const updateUser = async (e) => {
     e.preventDefault()
     setSaved(false)
     const form = new FormData(e.target)
     let formObject = Object.fromEntries(form.entries())
-    const { data } = await axios.patch(`${process.env.REACT_APP_API_URL}/profile`, formObject)
+    const { data } = await axios.patch(
+      `${process.env.REACT_APP_API_URL}/profile`,
+      formObject
+    )
     setSaved(true)
   }
 
@@ -46,7 +49,10 @@ function Profile() {
   return (
     <div className="container mx-auto">
       <Nav />
-      <form onSubmit={updateUser} className="flex flex-col gap-2 justify-start border-2 rounded p-5 mt-4">
+      <form
+        onSubmit={updateUser}
+        className="flex flex-col gap-2 justify-start border-2 rounded p-5 mt-4"
+      >
         <h1 className="font-bold text-2xl">Your Profile</h1>
         <div className="flex items-center">
           <img
@@ -79,9 +85,12 @@ function Profile() {
           type="email"
           placeholder={user.email}
         />
-        <button className="rounded p-3 mt-6 text-white w-32 bg-red-400">
-          Save Changes
-        </button>
+        <div className="flex">
+          <button className="rounded p-3 mt-6 text-white w-32 bg-red-400">
+            Save Changes
+          </button>
+          <button className="rounded p-3 mt-6  w-32 border-2">Logout</button>
+        </div>
       </form>
     </div>
   )

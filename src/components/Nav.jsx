@@ -42,16 +42,23 @@ function Nav() {
           </div>
         </Link>
         {user ? (
-          <Link to="/profile">
-            <div className="flex justify-between gap-1 border rounded px-2 py-1 hover:border-[#fb7185]">
-              <img
-                src={user.profile_pic}
-                alt="User profile pic"
-                className="rounded-full h-5 w-5 border"
-              />
-              <span className="text-sm">Profile</span>
-            </div>
-          </Link>
+          <>
+            <Link to="/profile">
+              <div className="flex justify-between gap-1 border rounded px-2 py-1 hover:border-[#fb7185]">
+                <img
+                  src={user.profile_pic}
+                  alt="User profile pic"
+                  className="rounded-full h-5 w-5 border"
+                />
+                <span className="text-sm">Profile</span>
+              </div>
+            </Link>
+            <Link to="/logout">
+              <div className="flex justify-between gap-1 border rounded px-2 py-1 hover:border-[#fb7185]">
+                <span className="text-sm">Logout</span>
+              </div>
+            </Link>
+          </>
         ) : (
           <Link to="/login">
             <div className="flex justify-between gap-1 border rounded px-2 py-1 hover:border-[#fb7185]">
