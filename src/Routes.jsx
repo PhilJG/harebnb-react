@@ -13,6 +13,7 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="*" element={<Houses />} />
         <Route path="/" element={<Houses />} />
         <Route path="/houses/:id" element={<House />} />
         <Route path="/houses/:id/edit" element={<HouseEdit />} />
