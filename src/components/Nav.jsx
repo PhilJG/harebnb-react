@@ -31,6 +31,8 @@ function Nav() {
         </Link>
       </div>
       <div className="flex mt-3 mb-1 gap-1">
+        {user ? (
+          <>
         <Link to="/bookings">
           <div className="inline border rounded text-sm px-2 py-1 hover:border-[#fb7185]">
             My Bookings
@@ -41,7 +43,6 @@ function Nav() {
             My Listings
           </div>
         </Link>
-        {user ? (
           <Link to="/profile">
             <div className="flex justify-between gap-1 border rounded px-2 py-1 hover:border-[#fb7185]">
               <img
@@ -52,6 +53,7 @@ function Nav() {
               <span className="text-sm">Profile</span>
             </div>
           </Link>
+          </>
         ) : (
           <Link to="/login">
             <div className="flex justify-between gap-1 border rounded px-2 py-1 hover:border-[#fb7185]">
@@ -59,7 +61,7 @@ function Nav() {
             </div>
           </Link>
         )}
-      </div>
+        </div>
     </div>
   )
 }
