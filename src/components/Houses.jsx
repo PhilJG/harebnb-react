@@ -15,31 +15,32 @@ function Houses() {
   const [houses, setHouses] = useState([])
 
   const href = window.location.href
-  
+
   const baseUrl = fetchBaseUrl(href)
-  
+
   const getHouses = async () => {
-    
-    const {data} = await axios.get(`${baseUrl}/houses`)
+    const { data } = await axios.get(`${baseUrl}/houses`)
     setHouses(data)
-    console.log(houses);
-    
-  }  
+    console.log(houses)
+  }
 
   useEffect(() => {
     getHouses()
-    
   }, [])
-  console.log(houses);
+  console.log(houses)
 
   return (
     <div className="container mx-auto">
       <Nav />
       <Filters setHouses={setHouses} />
-      <div className="grid grid-cols-5 gap-4 ">
-        {houses.length === 0 ? <LoadSpinner /> : houses.map((house, i) => {
-          return <HouseCard key={i} house={house} />
-        })}
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 ">
+        {houses.length === 0 ? (
+          <LoadSpinner />
+        ) : (
+          houses.map((house, i) => {
+            return <HouseCard key={i} house={house} />
+          })
+        )}
       </div>
     </div>
   )
