@@ -16,42 +16,47 @@ function BookingComponent({ booking }) {
   )
 }
 
-function HouseCard({ booking, listing, house }) {  
- 
+function HouseCard({ booking, listing, house }) {
+  console.log(house.house_photos[0])
+
   return (
     <div className="border rounded hover:shadow">
       <Link to={`houses/${house.house_id}`}>
-        <img src={house.house_photos} className="border rounded-t-md" alt="" />
+        <img
+          src={house.house_photos[0]}
+          className="border rounded-t-md"
+          alt=""
+        />
         <div className="p-3">
-
-        <h6 className="text-lg font-bold">{house.location}</h6>
-        <span className="text-sm text-slate-400">
-          {house.rooms} rooms · {house.bathrooms} bathrooms
-        </span>
-        <h5 className="text-lg font-bold">${house.price}</h5>
-        <div className="flex justify-between">
-          <div>
-            <span>
-              <FontAwesomeIcon className="text-yellow-500" icon={faStar} />
-              <FontAwesomeIcon className="text-yellow-500" icon={faStar} />
-              <FontAwesomeIcon className="text-yellow-500" icon={faStar} />
-              <FontAwesomeIcon className="text-yellow-500" icon={faStarHalf} />
-            </span>
-            {house.rating}
+          <h6 className="text-lg font-bold">{house.location}</h6>
+          <span className="text-sm text-slate-400">
+            {house.rooms} rooms · {house.bathrooms} bathrooms
+          </span>
+          <h5 className="text-lg font-bold">${house.price}</h5>
+          <div className="flex justify-between">
+            <div>
+              <span>
+                <FontAwesomeIcon className="text-yellow-500" icon={faStar} />
+                <FontAwesomeIcon className="text-yellow-500" icon={faStar} />
+                <FontAwesomeIcon className="text-yellow-500" icon={faStar} />
+                <FontAwesomeIcon
+                  className="text-yellow-500"
+                  icon={faStarHalf}
+                />
+              </span>
+              {house.rating}
+            </div>
+            <div>
+              {house.reviews}
+              <FontAwesomeIcon icon={faCommentDots} />
+            </div>
           </div>
-          <div>
-            {house.reviews}
-            <FontAwesomeIcon
-              icon={faCommentDots}
-              />
-          </div>
-        </div>
         </div>
         {house.booking ? (
           <BookingComponent booking={house.booking} price={house.price} />
-          ) : (
-            ''
-            )}
+        ) : (
+          ''
+        )}
       </Link>
       {listing ? (
         <span>
@@ -60,9 +65,8 @@ function HouseCard({ booking, listing, house }) {
         </span>
       ) : (
         ''
-        )}
+      )}
     </div>
-        
   )
 }
 export default HouseCard
