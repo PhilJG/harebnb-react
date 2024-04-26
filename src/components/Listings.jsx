@@ -43,8 +43,6 @@ function CreateListing() {
     } else {
       setListings([...listings, data])
       e.target.reset()
-      console.log(listings)
-
       setError('')
     }
   }
@@ -55,13 +53,13 @@ function CreateListing() {
       className="p-4 mx-2 border-2 rounded"
     >
       <h1 className="my-1 text-2xl">List a house</h1>
-      <div className="grid grid-cols-2">
-        <div className=" mr-28">
+      <div className="grid md:grid-cols-2">
+        <div className=" lg:mr-28 md:mr-14">
           <div className="flex flex-col my-1">
             <label>Location</label>
             <input
               name="location"
-              className="border-2 rounded p-2"
+              className="border-2 rounded p-2 w-full"
               type="text"
               defaultValue={faker.location.city()}
             />
