@@ -21,13 +21,11 @@ function Houses() {
   const getHouses = async () => {
     const { data } = await axios.get(`${baseUrl}/houses`)
     setHouses(data)
-    console.log(houses)
   }
 
   useEffect(() => {
     getHouses()
   }, [])
-  console.log(houses)
 
   return (
     <div className="container mx-auto">

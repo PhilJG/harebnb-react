@@ -5,7 +5,8 @@ import fetchBaseUrl from '../_utils/fetch.js'
 import axios from 'axios'
 
 function Nav() {
-  const [user, setUser] = useState('')
+  const [user, setUser] = useState(null)
+  const isLoggedIn = localStorage.getItem('isLoggedIn')
 
   const href = window.location.href
   const baseUrl = fetchBaseUrl(href)
@@ -33,26 +34,26 @@ function Nav() {
       <div className="flex mt-3 mb-1 gap-1">
         {user ? (
           <>
-        <Link to="/bookings">
-          <div className="inline border rounded text-sm px-2 py-1 hover:border-[#fb7185]">
-            My Bookings
-          </div>
-        </Link>
-        <Link to="/listings">
-          <div className="inline border rounded text-sm px-2 py-1 hover:border-[#fb7185]">
-            My Listings
-          </div>
-        </Link>
-          <Link to="/profile">
-            <div className="flex justify-between gap-1 border rounded px-2 py-1 hover:border-[#fb7185]">
-              <img
-                src={user.profile_pic}
-                alt="User profile pic"
-                className="rounded-full h-5 w-5 border"
-              />
-              <span className="text-sm">Profile</span>
-            </div>
-          </Link>
+            <Link to="/bookings">
+              <div className="inline border rounded text-sm px-2 py-1 hover:border-[#fb7185]">
+                My Bookings
+              </div>
+            </Link>
+            <Link to="/listings">
+              <div className="inline border rounded text-sm px-2 py-1 hover:border-[#fb7185]">
+                My Listings
+              </div>
+            </Link>
+            <Link to="/profile">
+              <div className="flex justify-between gap-1 border rounded px-2 py-1 hover:border-[#fb7185]">
+                <img
+                  src={user.profile_pic}
+                  alt="User profile pic"
+                  className="rounded-full h-5 w-5 border"
+                />
+                <span className="text-sm">Profile</span>
+              </div>
+            </Link>
           </>
         ) : (
           <Link to="/login">
@@ -61,7 +62,7 @@ function Nav() {
             </div>
           </Link>
         )}
-        </div>
+      </div>
     </div>
   )
 }

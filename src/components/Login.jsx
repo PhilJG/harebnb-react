@@ -14,52 +14,71 @@ function Login() {
   const href = window.location.href
   const baseUrl = fetchBaseUrl(href)
 
-  const  submitForm = async (e) => {
+  const submitForm = async (e) => {
     e.preventDefault()
     let form = new FormData(e.target)
     let formObject = Object.fromEntries(form.entries())
-    
 
-    const {data} = await axios.post(
-      `${baseUrl}/login`,
-    {data: formObject}
-    )
+    const { data } = await axios.post(`${baseUrl}/login`, { data: formObject })
 
-    console.log(data);
+    console.log(data)
 
     if (data.error) {
       setFormError(data.error.message)
     } else {
+      localStorage.setItem('isLoggedIn', true)
+      localStorage.setItem('profile_pic', data.profile_pic)
       navigate('/')
     }
   }
   return (
     <div className="w-80 mx-auto mt-20">
-    <div className="p-6 border rounded-lg">
-      <img src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399114/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/logo-airbnb.png" alt="Airbnb" className="h-6 mx-auto" />
-      <form onSubmit={e => submitForm(e)}>
+      <div className="p-6 border rounded-lg">
+        <img
+          src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399114/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/logo-airbnb.png"
+          alt="Airbnb"
+          className="h-6 mx-auto"
+        />
+        <form onSubmit={(e) => submitForm(e)}>
+          <div className="my-5">
+            <label className="text-slate-500 text-sm">Email</label>
+            <input
+              name="email"
+              type="text"
+              className="border px-3 py-2 w-full rounded"
+              autoFocus
+            />
+          </div>
 
-        <div className="my-5">
-          <label className="text-slate-500 text-sm">Email</label>
-          <input name="email" type="text" className="border px-3 py-2 w-full rounded" autoFocus />
+          <div className="my-5">
+            <label className="text-slate-500 text-sm">Password</label>
+            <input
+              name="password"
+              type="password"
+              className="border px-3 py-2 w-full rounded"
+            />
+          </div>
+
+          <button className="bg-rose-400 text-white py-2 px-3 w-full rounded">
+            Login
+          </button>
+          {formError && (
+            <span className="text-red-400 text-xs text-center block mt-2">
+              {formError}
+            </span>
+          )}
+        </form>
+
+        <div className="mt-5">
+          <span className="text-xs">
+            New to Airbnb?{' '}
+            <Link to="/signup" className="text-rose-500 underline">
+              Create an Account
+            </Link>
+          </span>
         </div>
-
-        <div className="my-5">
-          <label className="text-slate-500 text-sm">Password</label>
-          <input name="password" type="password" className="border px-3 py-2 w-full rounded" />
-        </div>
-
-        <button className="bg-rose-400 text-white py-2 px-3 w-full rounded">Login</button>
-        {
-          formError && <span className="text-red-400 text-xs text-center block mt-2">{formError}</span>
-        }
-      </form>
-  
-      <div className="mt-5">
-        <span className="text-xs">New to Airbnb? <Link to="/signup" className="text-rose-500 underline">Create an Account</Link></span>
       </div>
     </div>
-  </div>
   )
 }
 

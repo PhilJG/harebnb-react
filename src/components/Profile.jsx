@@ -39,7 +39,7 @@ function Profile() {
 
   const logout = async () => {
     await axios.get(`${baseUrl}/logout`)
-    navigate('/login')
+    navigate('/')
   }
 
   // Effects
@@ -92,7 +92,9 @@ function Profile() {
           </button>
         </div>
       </form>
-          <button onClick={logout} className="rounded p-3 mt-6  w-32 border-2">Logout</button>
+      <button onClick={logout} className="rounded p-3 mt-6  w-32 border-2">
+        Logout
+      </button>
     </div>
   )
 }

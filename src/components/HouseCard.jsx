@@ -17,8 +17,6 @@ function BookingComponent({ booking }) {
 }
 
 function HouseCard({ booking, listing, house }) {
-  console.log(house.house_photos[0])
-
   return (
     <div className="border rounded hover:shadow">
       <Link to={`houses/${house.house_id}`}>
