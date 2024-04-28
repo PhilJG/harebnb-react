@@ -89,6 +89,7 @@ function Reviews() {
       `${baseUrl}/reviews` + (id ? '?house_id=' + id : '')
     )
     setReviews(data)
+    console.log(data)
   }
   useEffect(() => {
     getReviews()
@@ -151,4 +152,5 @@ function Reviews() {
     </div>
   )
 }
+
 export default Reviews

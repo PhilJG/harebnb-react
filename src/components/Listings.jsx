@@ -33,13 +33,9 @@ function CreateListing() {
     const form = new FormData(e.target)
     let photos = form.getAll('house_photos')
 
-    console.log(photos)
-
     let formObject = Object.fromEntries(form.entries())
-    console.log(formObject.house_photos)
 
     formObject.house_photos = photos
-    console.log(formObject)
 
     const { data } = await axios.post(`${baseUrl}/houses`, formObject)
     if (data.error) {
@@ -92,7 +88,7 @@ function CreateListing() {
               name="price"
               className="border-2 rounded p-2"
               type="text"
-              defaultValue={`$${Math.floor(Math.random() * 2000) + 100}`}
+              defaultValue={`${Math.floor(Math.random() * 2000) + 100}`}
             />
           </div>
           <div className="flex flex-col my-1">

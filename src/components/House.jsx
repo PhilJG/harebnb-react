@@ -96,6 +96,8 @@ function House() {
     getHouse()
   }, [])
 
+  console.log(house)
+
   return (
     <div className="container mx-auto">
       <Nav />
@@ -112,12 +114,15 @@ function House() {
                 {house.rooms} rooms . {house.bathrooms} bathrooms
               </div>
               <div className="flex justify-start  my-4">
-                {/* <img src={house.host.picture} className="rounded-full mr-2 h-12" /> */}
+                <img
+                  // src={house.hostRows.profile_pic}
+                  className="rounded-full mr-2 h-12"
+                />
                 <div>
                   <div className="text-sm">Hosted by</div>
                   <div className="text-sm">
                     <strong>
-                      {/* {house.host.firstName} {house.host.lastName} */}
+                      {house.hostRows.firstName} {house.hostRows.lastName}
                     </strong>
                   </div>
                 </div>

@@ -34,16 +34,16 @@ function Nav() {
       <div className="flex mt-3 mb-1 gap-1">
         {user ? (
           <>
-            <Link to="/bookings">
+            {/* <Link to="/bookings">
               <div className="inline border rounded text-sm px-2 py-1 hover:border-[#fb7185]">
                 My Bookings
               </div>
-            </Link>
-            {/* <Link to="/listings">
+            </Link> */}
+            <Link to="/listings">
               <div className="inline border rounded text-sm px-2 py-1 hover:border-[#fb7185]">
                 My Listings
               </div>
-            </Link> */}
+            </Link>
             <Link to="/profile">
               <div className="flex justify-between gap-1 border rounded px-2 py-1 hover:border-[#fb7185]">
                 <img
