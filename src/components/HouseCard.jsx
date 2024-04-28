@@ -17,11 +17,16 @@ function BookingComponent({ booking }) {
 }
 
 function HouseCard({ booking, listing, house }) {
+  let housePhotos = house.house_photos
+  if (!housePhotos) {
+    housePhotos = [] // Provide a default value
+  }
+
   return (
     <div className="border rounded hover:shadow">
       <Link to={`houses/${house.house_id}`}>
         <img
-          src={house.house_photos[0]}
+          src={house.house_photos ? house.house_photos[0] : 'default_image_url'}
           className="border rounded-t-md"
           alt=""
         />

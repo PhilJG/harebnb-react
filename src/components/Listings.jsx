@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { faker } from '@faker-js/faker'
 
 import Nav from './Nav'
@@ -44,6 +45,7 @@ function CreateListing() {
       setListings([...listings, data])
       e.target.reset()
       setError('')
+      useNavigate('/')
     }
   }
 
@@ -133,6 +135,7 @@ function Listings() {
     const { data } = await axios.get(`${baseUrl}/listings`)
 
     setListing(data)
+    console.log(data)
   }
 
   useEffect(() => {
@@ -143,7 +146,7 @@ function Listings() {
     <div className="container mx-auto">
       <Nav />
       <CreateListing />
-      <div className="grid grid-cols-5 gap-4 mx-2">
+      {/* <div className="grid grid-cols-5 gap-4 mx-2">
         {listings.length === 0 ? (
           <LoadSpinner />
         ) : (
@@ -151,7 +154,7 @@ function Listings() {
             <HouseCard house={house} listing={true} key={id} />
           ))
         )}
-      </div>
+      </div> */}
     </div>
   )
 }
