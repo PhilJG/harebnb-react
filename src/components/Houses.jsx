@@ -5,7 +5,6 @@ import Filters from './Filters'
 import LoadSpinner from './LoadSpinner'
 
 import { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
 
 import fetchBaseUrl from '../_utils/fetch.js'
 
@@ -15,7 +14,6 @@ function Houses() {
   const [houses, setHouses] = useState([])
 
   const href = window.location.href
-
   const baseUrl = fetchBaseUrl(href)
 
   const getHouses = async () => {

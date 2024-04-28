@@ -1,8 +1,6 @@
 import { useState } from 'react'
 
 function Gallery({ images }) {
-  console.log(images.length)
-
   const [selectedImage, setSelectedImage] = useState(images[0])
 
   return (

@@ -39,6 +39,8 @@ function Profile() {
 
   const logout = async () => {
     await axios.get(`${baseUrl}/logout`)
+    localStorage.setItem('isLoggedIn', false)
+
     navigate('/')
   }
 

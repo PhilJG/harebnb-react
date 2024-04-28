@@ -31,11 +31,15 @@ function CreateListing() {
   const createHouse = async (e) => {
     e.preventDefault()
     const form = new FormData(e.target)
-
     let photos = form.getAll('house_photos')
 
+    console.log(photos)
+
     let formObject = Object.fromEntries(form.entries())
+    console.log(formObject.house_photos)
+
     formObject.house_photos = photos
+    console.log(formObject)
 
     const { data } = await axios.post(`${baseUrl}/houses`, formObject)
     if (data.error) {
@@ -54,7 +58,7 @@ function CreateListing() {
     >
       <h1 className="my-1 text-2xl">List a house</h1>
       <div className="grid md:grid-cols-2">
-        <div className=" lg:mr-28 md:mr-14">
+        <div className="lg:mr-28 md:mr-14">
           <div className="flex flex-col my-1">
             <label>Location</label>
             <input
@@ -100,11 +104,6 @@ function CreateListing() {
               defaultValue={faker.lorem.paragraph()}
             ></textarea>
           </div>
-          <div className=" mt-6">
-            <button className="rounded  py-2  px-3 mr-2 text-white  bg-red-400">
-              List House
-            </button>
-          </div>
         </div>
         <div className="flex flex-col">
           <div className="px-1">Photos</div>
@@ -117,6 +116,11 @@ function CreateListing() {
           <HousePhotoInput />
           <HousePhotoInput />
           <HousePhotoInput />
+        </div>
+        <div className=" mt-6">
+          <button className="rounded  py-2  px-3 mr-2 text-white  bg-red-400">
+            List House
+          </button>
         </div>
       </div>
     </form>

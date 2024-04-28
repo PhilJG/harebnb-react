@@ -39,11 +39,11 @@ function Nav() {
                 My Bookings
               </div>
             </Link>
-            <Link to="/listings">
+            {/* <Link to="/listings">
               <div className="inline border rounded text-sm px-2 py-1 hover:border-[#fb7185]">
                 My Listings
               </div>
-            </Link>
+            </Link> */}
             <Link to="/profile">
               <div className="flex justify-between gap-1 border rounded px-2 py-1 hover:border-[#fb7185]">
                 <img
