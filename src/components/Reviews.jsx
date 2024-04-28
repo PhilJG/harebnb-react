@@ -103,7 +103,7 @@ function Reviews() {
               className="mr-2"
               icon={faComment}
             ></FontAwesomeIcon>
-            <h1 className="text-lg font-bold">34 Reviews</h1>
+            <h1 className="text-lg font-bold">{reviews.length} Reviews</h1>
           </div>
           <div className="flex items-center">
             <FontAwesomeIcon icon={faStar} className="text-yellow-500" />
