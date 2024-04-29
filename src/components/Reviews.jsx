@@ -125,17 +125,15 @@ function Reviews() {
           <div>Leave a Review</div>
           <form>
             <div className=" flex items-center text-yellow-500 mt-2">
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
+              {[...Array(5)].map((_, i) => (
+                <FontAwesomeIcon key={i} icon={faStar} />
+              ))}
               <div className="text-black p-2"> 0</div>
             </div>
             <div className="border rounded border-gray-300 mt-3">
               <div className="">
                 <textarea
-                  value="Please leave a review..."
+                  placeholder="Please leave a review..."
                   rows="4"
                   className="bg-transparent resize-none outline-none text-gray-300 p-2 "
                 ></textarea>

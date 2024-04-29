@@ -106,7 +106,7 @@ function House() {
       ) : (
         <>
           <Gallery images={house.house_photos} />
-          <div className="grid grid-cols-3 gap-36 pb-10 mx-2">
+          <div className="grid lg:grid-cols-3 lg:gap-36 pb-10 mx-2">
             <div className="col-span-2">
               {/* <div className=""> */}
               <div className="text-lg font-bold my-4">{house.location}</div>
@@ -115,7 +115,7 @@ function House() {
               </div>
               <div className="flex justify-start  my-4">
                 <img
-                  // src={house.hostRows.profile_pic}
+                  src={house.hostRows.profile_pic}
                   className="rounded-full mr-2 h-12"
                 />
                 <div>

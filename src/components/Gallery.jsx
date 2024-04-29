@@ -4,7 +4,7 @@ function Gallery({ images }) {
   const [selectedImage, setSelectedImage] = useState(images[0])
 
   return (
-    <div className="grid grid-cols-2 gap-5 p-2">
+    <div className="grid md:grid-cols-2 gap-5 p-2">
       <img
         src={selectedImage}
         alt="House 1 image 1"
