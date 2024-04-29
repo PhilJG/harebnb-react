@@ -41,7 +41,7 @@ function Nav() {
             </Link> */}
             <Link to="/listings">
               <div className="inline border rounded text-sm px-2 py-1 hover:border-[#fb7185]">
-                My Listings
+                Add Listing
               </div>
             </Link>
             <Link to="/profile">

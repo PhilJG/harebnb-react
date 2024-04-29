@@ -41,7 +41,7 @@ function Profile() {
     await axios.get(`${baseUrl}/logout`)
     localStorage.setItem('isLoggedIn', false)
 
-    navigate('/')
+    navigate('/login')
   }
 
   // Effects

@@ -96,8 +96,8 @@ function Reviews() {
   }, [])
 
   return (
-    <div className="container mx-auto grid grid-cols-3 gap-36 border-t-2">
-      <div className="flex flex-col col-span-2">
+    <div className="container mx-auto grid lg:grid-cols-3 lg:gap-36 border-t-2">
+      <div className="grid lg:flex-col col-span-2">
         <div className=" my-6">
           <div className="flex items-center">
             <FontAwesomeIcon
@@ -135,7 +135,7 @@ function Reviews() {
                 <textarea
                   placeholder="Please leave a review..."
                   rows="4"
-                  className="bg-transparent resize-none outline-none text-gray-300 p-2 "
+                  className="bg-transparent resize-none outline-none text-gray-300 p-2"
                 ></textarea>
               </div>
             </div>
