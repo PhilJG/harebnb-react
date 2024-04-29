@@ -37,7 +37,7 @@ function HouseCard({ booking, listing, house }) {
           </span>
           <h5 className="text-lg font-bold">${house.price}</h5>
           <div className="flex justify-between">
-            <div>
+            {/* <div>
               <span>
                 <FontAwesomeIcon className="text-yellow-500" icon={faStar} />
                 <FontAwesomeIcon className="text-yellow-500" icon={faStar} />
@@ -48,7 +48,7 @@ function HouseCard({ booking, listing, house }) {
                 />
               </span>
               {house.rating}
-            </div>
+            </div> */}
             <div>
               {house.reviews}
               <FontAwesomeIcon icon={faCommentDots} />

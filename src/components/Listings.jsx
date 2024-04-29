@@ -29,6 +29,8 @@ function CreateListing() {
   const href = window.location.href
   const baseUrl = fetchBaseUrl(href)
 
+  const navigate = useNavigate()
+
   const createHouse = async (e) => {
     e.preventDefault()
     const form = new FormData(e.target)
@@ -45,7 +47,7 @@ function CreateListing() {
       setListings([...listings, data])
       e.target.reset()
       setError('')
-      useNavigate('/')
+      navigate('/')
     }
   }
 
