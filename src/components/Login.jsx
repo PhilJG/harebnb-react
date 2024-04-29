@@ -27,7 +27,6 @@ function Login() {
       setFormError(data.error.message)
     } else {
       localStorage.setItem('isLoggedIn', true)
-      localStorage.setItem('profile_pic', data.profile_pic)
       navigate('/')
     }
   }

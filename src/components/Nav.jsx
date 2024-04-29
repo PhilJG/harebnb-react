@@ -5,7 +5,7 @@ import fetchBaseUrl from '../_utils/fetch.js'
 import axios from 'axios'
 
 function Nav() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState({})
   const isLoggedIn = localStorage.getItem('isLoggedIn')
 
   const href = window.location.href
@@ -13,7 +13,8 @@ function Nav() {
 
   const getProfile = async () => {
     const { data } = await axios.get(`${baseUrl}/profile`)
-    setUser(data)
+    console.log(data)
+    setUser(data.profile_pic)
   }
   // Effects
   useEffect(() => {
@@ -32,7 +33,7 @@ function Nav() {
         </Link>
       </div>
       <div className="flex mt-3 mb-1 gap-1">
-        {user ? (
+        {isLoggedIn && user ? (
           <>
             {/* <Link to="/bookings">
               <div className="inline border rounded text-sm px-2 py-1 hover:border-[#fb7185]">
@@ -46,11 +47,8 @@ function Nav() {
             </Link>
             <Link to="/profile">
               <div className="flex justify-between gap-1 border rounded px-2 py-1 hover:border-[#fb7185]">
-                <img
-                  src={user.profile_pic}
-                  alt="User profile pic"
-                  className="rounded-full h-5 w-5 border"
-                />
+                <img src={user} className="rounded-full h-5 w-5 border" />
+
                 <span className="text-sm">Profile</span>
               </div>
             </Link>
