@@ -137,14 +137,14 @@ function Filters({ setHouses }) {
               </select>
             </div>
             {/* Keywords */}
-            <div className="flex-1">
+            {/* <div className="flex-1">
               <input
                 name="search"
                 type="text"
                 placeholder="keywords..."
                 className="bg-white text-sm font-semibold px-2 py-3 border rounded w-full"
               />
-            </div>
+            </div> */}
             <button className="bg-[#fb7185] text-sm text-white font-semibold px-3 py-2 rounded">
               Search
             </button>

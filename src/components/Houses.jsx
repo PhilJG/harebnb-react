@@ -29,15 +29,17 @@ function Houses() {
     <div className="container mx-auto">
       <Nav />
       <Filters setHouses={setHouses} />
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 ">
-        {houses.length === 0 ? (
+      {houses.length === 0 ? (
+        <div className="flex justify-center items-center h-full">
           <LoadSpinner />
-        ) : (
-          houses.map((house, i) => {
+        </div>
+      ) : (
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 ">
+          {houses.map((house, i) => {
             return <HouseCard key={i} house={house} />
-          })
-        )}
-      </div>
+          })}
+        </div>
+      )}
     </div>
   )
 }
