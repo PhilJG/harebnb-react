@@ -13,7 +13,6 @@ function Nav() {
 
   const getProfile = async () => {
     const { data } = await axios.get(`${baseUrl}/profile`)
-    console.log(data)
     setUser(data.profile_pic)
   }
   // Effects

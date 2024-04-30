@@ -80,20 +80,33 @@ function Review({ review, baseUrl }) {
 function Reviews() {
   const { id } = useParams()
   const [reviews, setReviews] = useState([])
+  const [error, setError] = useState('')
 
   const href = window.location.href
   const baseUrl = fetchBaseUrl(href)
 
   const getReviews = async () => {
-    let { data } = await axios.get(
-      `${baseUrl}/reviews` + (id ? '?house_id=' + id : '')
-    )
+    let { data } = await axios.get(`${baseUrl}/reviews`)
     setReviews(data)
-    console.log(data)
   }
   useEffect(() => {
     getReviews()
   }, [])
+
+  const createReview = async (e) => {
+    e.preventDefault()
+    const form = new FormData(e.target)
+    let formObject = Object.fromEntries(form.entries())
+
+    formObject.house_id = id
+    console.log(formObject)
+
+    const { data } = await axios.post(`${baseUrl}/reviews`, formObject)
+    if (data.review_id) {
+      setReviews([data, ...reviews])
+      setReviewed(true)
+    }
+  }
 
   return (
     <div className="container mx-auto grid lg:grid-cols-3 lg:gap-36 border-t-2">
@@ -123,7 +136,7 @@ function Reviews() {
       <div className=" m-6">
         <div className="p-4 rounded border border-gray-300">
           <div>Leave a Review</div>
-          <form>
+          <form onSubmit={createReview}>
             <div className=" flex items-center text-yellow-500 mt-2">
               {[...Array(5)].map((_, i) => (
                 <FontAwesomeIcon key={i} icon={faStar} />

@@ -96,8 +96,6 @@ function House() {
     getHouse()
   }, [])
 
-  console.log(house)
-
   return (
     <div className="container mx-auto">
       <Nav />
