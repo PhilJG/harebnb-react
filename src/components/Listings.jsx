@@ -12,13 +12,17 @@ import fetchBaseUrl from '../_utils/fetch.js'
 axios.defaults.withCredentials = true
 
 function HousePhotoInput({}) {
+  const randomImageUrl = faker.image.url(640, 480, 'house', true)
   return (
-    <input
-      name="house_photos"
-      type="url"
-      className="border-2 rounded p-2 my-1"
-      defaultValue={faker.image.url(640, 480, 'house', true)}
-    />
+    <div className="flex py-4">
+      <img src={randomImageUrl} alt="User profile pic" className="w-20 pr-2" />
+      <input
+        name="house_photos"
+        type="url"
+        className="border-2 p-2 my-1 w-full"
+        defaultValue={randomImageUrl}
+      />
+    </div>
   )
 }
 
@@ -57,6 +61,9 @@ function CreateListing() {
       className="p-4 mx-2 border-2 rounded"
     >
       <h1 className="my-1 text-2xl">List a house</h1>
+      <span className="text-blue-500">
+        Data is randomly generated but feel free to create your own :)
+      </span>
       <div className="grid md:grid-cols-2">
         <div className="lg:mr-28 md:mr-14">
           <div className="flex flex-col my-1">
@@ -100,14 +107,13 @@ function CreateListing() {
             <textarea
               name="description"
               className="border-2 rounded p-2"
-              rows="6"
+              rows="3"
               defaultValue={faker.lorem.paragraph()}
             ></textarea>
           </div>
         </div>
         <div className="flex flex-col">
           <div className="px-1">Photos</div>
-
           <HousePhotoInput />
           <HousePhotoInput />
           <HousePhotoInput />

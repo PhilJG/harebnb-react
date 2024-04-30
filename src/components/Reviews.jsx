@@ -86,7 +86,7 @@ function Reviews() {
   const baseUrl = fetchBaseUrl(href)
 
   const getReviews = async () => {
-    let { data } = await axios.get(`${baseUrl}/reviews`)
+    let { data } = await axios.get(`${baseUrl}/reviews?house_id=${id}`)
     setReviews(data)
   }
   useEffect(() => {
