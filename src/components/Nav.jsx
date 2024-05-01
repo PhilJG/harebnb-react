@@ -34,11 +34,11 @@ function Nav() {
       <div className="flex mt-3 mb-1 gap-1">
         {isLoggedIn && user ? (
           <>
-            {/* <Link to="/bookings">
+            <Link to="/bookings">
               <div className="inline border rounded text-sm px-2 py-1 hover:border-[#fb7185]">
                 My Bookings
               </div>
-            </Link> */}
+            </Link>
             <Link to="/listings">
               <div className="inline border rounded text-sm px-2 py-1 hover:border-[#fb7185]">
                 Add Listing

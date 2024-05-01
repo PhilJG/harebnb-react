@@ -6,11 +6,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 
-function BookingComponent({ booking }) {
+function BookingComponent({ house }) {
   return (
     <div className="flex flex-col items-center m-3 p-2 bg-green-200">
       <span>
-        {booking.startDate} - {booking.endDate}
+        {house.check_in} - {house.check_out}
       </span>
     </div>
   )
@@ -22,14 +22,12 @@ function HouseCard({ booking, listing, house }) {
     housePhotos = [] // Provide a default value
   }
 
+  console.log(booking)
+
   return (
     <div className="border rounded hover:shadow">
       <Link to={`houses/${house.house_id}`}>
-        <img
-          src={house.house_photos ? house.house_photos[0] : 'default_image_url'}
-          className="border rounded-t-md"
-          alt=""
-        />
+        <img src={house.house_photos} className="border rounded-t-md" alt="" />
         <div className="p-3">
           <h6 className="text-lg font-bold">{house.location}</h6>
           <span className="text-sm text-slate-400">
@@ -55,11 +53,7 @@ function HouseCard({ booking, listing, house }) {
             </div>
           </div>
         </div>
-        {house.booking ? (
-          <BookingComponent booking={house.booking} price={house.price} />
-        ) : (
-          ''
-        )}
+        {booking ? <BookingComponent house={house} /> : ''}
       </Link>
       {listing ? (
         <span>

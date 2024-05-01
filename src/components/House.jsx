@@ -14,6 +14,7 @@ function BookHouse({ house }) {
   const [endDate, setEndDate] = useState('')
   const [nights, setNights] = useState(0)
   const [totalPrice, setTotalPrice] = useState(0)
+
   useEffect(() => {
     if (!startDate || !endDate) {
       return
@@ -23,7 +24,6 @@ function BookHouse({ house }) {
     let end = new Date(endDate)
 
     let totalTime = end.getTime() - start.getTime()
-
     let totalDays = Math.round(totalTime / (1000 * 3600 * 24))
 
     setNights(totalDays)
@@ -36,7 +36,7 @@ function BookHouse({ house }) {
   return (
     <form className="border-2 p-4 x-20 border-gray-300 rounded">
       <div className="pb-1 text-lg">
-        <strong className="text-lg">$120</strong>/night
+        <strong className="text-lg">${totalPrice}</strong>/night
         <div className="flex">
           <div className="flex flex-col">
             <label>Check-in</label>
