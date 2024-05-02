@@ -131,7 +131,7 @@ function House() {
             </div>
             <BookHouse house={house} />
           </div>
-          <Reviews />
+          <Reviews id={house.house_id} rating={house.rating} />
         </>
       )}
     </div>

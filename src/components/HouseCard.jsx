@@ -22,8 +22,6 @@ function HouseCard({ booking, listing, house }) {
     housePhotos = [] // Provide a default value
   }
 
-  console.log(booking)
-
   return (
     <div className="border rounded hover:shadow">
       <Link to={`houses/${house.house_id}`}>

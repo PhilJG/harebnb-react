@@ -34,6 +34,7 @@ function Review({ review, baseUrl }) {
   const [reviewer, setReviewer] = useState()
 
   let rawDate = review.review_date
+
   let modifiedDate = rawDate.substring(0, 10)
 
   const getReviewer = async (user_id) => {
@@ -77,36 +78,50 @@ function Review({ review, baseUrl }) {
   )
 }
 
-function Reviews() {
+function Reviews({ house_id }) {
   const { id } = useParams()
   const [reviews, setReviews] = useState([])
+  const [reviewed, setReviewed] = useState(false)
   const [error, setError] = useState('')
+  const [rating, setRating] = useState(0)
 
   const href = window.location.href
   const baseUrl = fetchBaseUrl(href)
+
+  const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ')
 
   const getReviews = async () => {
     let { data } = await axios.get(`${baseUrl}/reviews?house_id=${id}`)
     setReviews(data)
   }
-  useEffect(() => {
-    getReviews()
-  }, [])
 
   const createReview = async (e) => {
     e.preventDefault()
     const form = new FormData(e.target)
     let formObject = Object.fromEntries(form.entries())
-
     formObject.house_id = id
-    console.log(formObject)
+    formObject.rating = rating
+    formObject.review_date = currentDate
+    console.log('Form data:', formObject) // Log the form data
 
-    const { data } = await axios.post(`${baseUrl}/reviews`, formObject)
-    if (data.review_id) {
+    try {
+      const { data } = await axios
+        .post(`${baseUrl}/reviews`, formObject)
+        .substr(0, 19)
+
+      console.log(data)
+
       setReviews([data, ...reviews])
       setReviewed(true)
+      console.log(reviews)
+    } catch (err) {
+      setError(err.message)
     }
   }
+
+  useEffect(() => {
+    getReviews()
+  }, [])
 
   return (
     <div className="container mx-auto grid lg:grid-cols-3 lg:gap-36 border-t-2">
@@ -139,9 +154,17 @@ function Reviews() {
           <form onSubmit={createReview}>
             <div className=" flex items-center text-yellow-500 mt-2">
               {[...Array(5)].map((_, i) => (
-                <FontAwesomeIcon key={i} icon={faStar} />
+                <FontAwesomeIcon
+                  key={i}
+                  value={i}
+                  type="radio"
+                  icon={faStar}
+                  name="rating"
+                  className={i < rating ? 'text-yellow-500' : 'text-gray-300'}
+                  onClick={() => setRating(i + 1)}
+                />
               ))}
-              <div className="text-black p-2"> 0</div>
+              <div className="text-black p-2"> {rating}</div>
             </div>
             <div className="border rounded border-gray-300 mt-3">
               <div className="">
@@ -149,6 +172,7 @@ function Reviews() {
                   placeholder="Please leave a review..."
                   rows="4"
                   className="bg-transparent resize-none outline-none text-gray-300 p-2"
+                  name="review"
                 ></textarea>
               </div>
             </div>

@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import fetchBaseUrl from '../_utils/fetch.js'
 
+// import logo from '../../public/logo-airbnb.png'
+
 import axios from 'axios'
 
 function Nav() {

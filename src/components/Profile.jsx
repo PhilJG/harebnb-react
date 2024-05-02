@@ -22,18 +22,18 @@ function Profile() {
   }
 
   const updatePicture = (url) => {
-    setUser({ ...user, picture: user.profile_pic })
+    setUser({ ...user, profile_pic: url })
+    console.log(user)
   }
 
   const updateUser = async (e) => {
     e.preventDefault()
+    console.log(user)
+
     setSaved(false)
     const form = new FormData(e.target)
     let formObject = Object.fromEntries(form.entries())
-    const { data } = await axios.patch(
-      `${process.env.REACT_APP_API_URL}/profile`,
-      formObject
-    )
+    const { data } = await axios.patch(`${baseUrl}/profile`, formObject)
     setSaved(true)
   }
 
@@ -66,7 +66,7 @@ function Profile() {
             className="border-2 px-4 py-2 rounded w-full ml-4"
             type="text"
             placeholder={user.profile_pic}
-            onChange={(e) => setPicture(e.target.value)}
+            onChange={(e) => updatePicture(e.target.value)}
           />
         </div>
         <label>First Name</label>

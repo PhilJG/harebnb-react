@@ -49,7 +49,7 @@ function Filters({ setHouses }) {
 
   useEffect(() => {
     const checkWindowSize = () => {
-      if (window.matchMedia('(min-width: 768px)').matches) {
+      if (window.matchMedia('(min-width: 1024px)').matches) {
         setShowFilters(true)
       } else {
         setShowFilters(false)
