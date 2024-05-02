@@ -143,7 +143,6 @@ function Listings() {
     const { data } = await axios.get(`${baseUrl}/listings`)
 
     setListing(data)
-    console.log(data)
   }
 
   useEffect(() => {

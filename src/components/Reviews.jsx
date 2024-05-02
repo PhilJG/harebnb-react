@@ -84,6 +84,7 @@ function Reviews({ house_id }) {
   const [reviewed, setReviewed] = useState(false)
   const [error, setError] = useState('')
   const [rating, setRating] = useState(0)
+  const [averageRating, setAverageRating] = useState('No ratings yet')
 
   const href = window.location.href
   const baseUrl = fetchBaseUrl(href)
@@ -120,8 +121,41 @@ function Reviews({ house_id }) {
   }
 
   useEffect(() => {
-    getReviews()
-  }, [])
+    getReviews().then(() => {
+      const totalRating = reviews.reduce(
+        (total, review) => total + review.rating,
+        0
+      )
+      let average = totalRating / reviews.length
+      average = average.toFixed(1)
+      setAverageRating(average)
+    }),
+      []
+  })
+
+  function renderStars(averageRating) {
+    if (isNaN(averageRating) || averageRating === 0) {
+      return [] // or return some default value
+    }
+    const fullStars = Math.floor(averageRating)
+    const halfStar = averageRating % 1 !== 0 ? 1 : 0
+
+    return [...Array(fullStars)]
+      .map((_, i) => (
+        <FontAwesomeIcon key={i} icon={faStar} className="text-yellow-500" />
+      ))
+      .concat(
+        halfStar ? (
+          <FontAwesomeIcon
+            key={fullStars}
+            icon={faStarHalf}
+            className="text-yellow-500"
+          />
+        ) : (
+          []
+        )
+      )
+  }
 
   return (
     <div className="container mx-auto grid lg:grid-cols-3 lg:gap-36 border-t-2">
@@ -135,16 +169,17 @@ function Reviews({ house_id }) {
             <h1 className="text-lg font-bold">{reviews.length} Reviews</h1>
           </div>
           <div className="flex items-center">
-            <FontAwesomeIcon icon={faStar} className="text-yellow-500" />
-            <FontAwesomeIcon icon={faStar} className="text-yellow-500" />
-            <FontAwesomeIcon icon={faStar} className="text-yellow-500" />
-            <FontAwesomeIcon icon={faStarHalf} className="text-yellow-500" />
-            <p>4.5</p>
+            {renderStars(averageRating)}
+            <p>{isNaN(averageRating) ? '' : averageRating}</p>
           </div>
           <div className="flex flex-col gap-1 ">
-            {reviews.map((review, index) => (
-              <Review key={index} review={review} baseUrl={baseUrl} />
-            ))}
+            {!reviews.length === 0 ? (
+              reviews.map((review, index) => (
+                <Review key={index} review={review} baseUrl={baseUrl} />
+              ))
+            ) : (
+              <p>No reviews yet</p>
+            )}
           </div>
         </div>
       </div>
