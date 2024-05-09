@@ -25,7 +25,11 @@ function HouseCard({ booking, listing, house }) {
   return (
     <div className="border rounded hover:shadow">
       <Link to={`houses/${house.house_id}`}>
-        <img src={house.house_photos} className="border rounded-t-md" alt="" />
+        <img
+          src={house.house_photos[0]}
+          className="border rounded-t-md"
+          alt=""
+        />
         <div className="p-3">
           <h6 className="text-lg font-bold">{house.location}</h6>
           <span className="text-sm text-slate-400">

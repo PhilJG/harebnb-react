@@ -23,7 +23,7 @@ function Houses() {
 
   useEffect(() => {
     getHouses()
-  }, [])
+  }, [houses])
 
   return (
     <div className="container mx-auto">

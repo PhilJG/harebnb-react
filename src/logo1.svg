@@ -6,15 +6,37 @@
    version="1.1"
    preserveAspectRatio="xMidYMid"
    id="svg6"
+   sodipodi:docname="logo1.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview8"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="0.32563406"
+     inkscape:cx="-199.61057"
+     inkscape:cy="-274.8484"
+     inkscape:window-width="1920"
+     inkscape:window-height="1065"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g2477" />
   <defs
      id="defs10">
     <color-profile
        name="SAMSUNG"
        xlink:href="../../../../../../.local/share/icc/edid-df11028a7e0d6d9a4f597c65b3b2575e.icc"
-       id="color-profile52100" />
+       id="color-profile52041" />
     <rect
        x="178.87279"
        y="170.21478"
@@ -46,7 +68,7 @@
      transform="matrix(1.4515121,0,0,1.4515121,-42.269207,-106.31703)"><tspan
        x="178.87305"
        y="262.69531"
-       id="tspan52113"><tspan
+       id="tspan52054"><tspan
          style="font-size:100px;font-family:Gargi;-inkscape-font-specification:'Gargi, Normal'"
-         id="tspan52111">harebnb</tspan></tspan></text>
+         id="tspan52052">harebnb</tspan></tspan></text>
 </svg>
