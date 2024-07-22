@@ -1,8 +1,8 @@
 const getBaseUrl = (string) => {
-    if(string.includes('localhost')){
-        return 'http://localhost:4100'
-    }
-    return 'https://harebnb-api.onrender.com'
+  if (string.includes('localhost')) {
+    return 'http://localhost:4100'
+  }
+  return 'harebnb-react-eawx8s660-phils-projects-89482ca9.vercel.app'
 }
 
 export default getBaseUrl
