@@ -52,7 +52,7 @@ function Signup() {
           alt="airbnb logo"
           className="h-6 self-center"
         />
-        <form onSubmit={submitForm}>
+        <form onSubmit={submitForm} className="flex flex-col">
           <label className="mt-2">First Name</label>
           <input
             name="first_name"
