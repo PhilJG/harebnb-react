@@ -16,7 +16,9 @@ function Login() {
 
   const submitForm = async (e) => {
     e.preventDefault()
+
     let form = new FormData(e.target)
+
     let formObject = Object.fromEntries(form.entries())
 
     const { data } = await axios.post(`${baseUrl}/login`, { data: formObject })
@@ -59,16 +61,16 @@ function Login() {
           <button className="bg-rose-400 text-white py-2 px-3 w-full rounded">
             Login
           </button>
-          {formError && (
-            <span className="text-red-400 text-xs text-center block mt-2">
-              {formError}
-            </span>
-          )}
         </form>
+        {formError && (
+          <span className="text-red-400 text-xs text-center block mt-2">
+            {formError.toString(formError)}
+          </span>
+        )}
 
         <div className="mt-5">
           <span className="text-xs">
-            New to Airbnb?{' '}
+            New to Harebnb?{' '}
             <Link to="/signup" className="text-rose-500 underline">
               Create an Account
             </Link>
