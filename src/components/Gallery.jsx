@@ -13,9 +13,9 @@ function Gallery({ images }) {
       <div className="grid grid-cols-3 gap-2">
         {images.map((image, id) => (
           <img
-            src={image.url}
+            src={image}
             key={id}
-            alt={image[id]}
+            alt={`image ${[id]}`}
             className="rounded h-full cursor-pointer hover:opacity-50"
             onClick={() => setSelectedImage(image.url)}
           />

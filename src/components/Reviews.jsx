@@ -173,7 +173,7 @@ function Reviews({ house_id }) {
             <p>{isNaN(averageRating) ? '' : averageRating}</p>
           </div>
           <div className="flex flex-col gap-1 ">
-            {!reviews.length === 0 ? (
+            {!reviews.length !== 0 ? (
               reviews.map((review, index) => (
                 <Review key={index} review={review} baseUrl={baseUrl} />
               ))
