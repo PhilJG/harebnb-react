@@ -103,7 +103,6 @@ function Reviews({ house_id }) {
     formObject.house_id = id
     formObject.rating = rating
     formObject.review_date = currentDate
-    console.log('Form data:', formObject) // Log the form data
 
     try {
       const { data } = await axios
@@ -131,7 +130,7 @@ function Reviews({ house_id }) {
       setAverageRating(average)
     }),
       []
-  })
+  }, [])
 
   function renderStars(averageRating) {
     if (isNaN(averageRating) || averageRating === 0) {
