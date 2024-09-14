@@ -26,7 +26,7 @@ function Houses() {
   }, [])
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto lg:px-12 md:p-4 lg:p-5">
       <Nav />
       <Filters setHouses={setHouses} />
       {houses.length === 0 ? (

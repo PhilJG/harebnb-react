@@ -11,16 +11,22 @@ import fetchBaseUrl from '../_utils/fetch.js'
 
 axios.defaults.withCredentials = true
 
-function HousePhotoInput({}) {
-  const randomImageUrl = faker.image.url(640, 480, 'house', true)
+function HousePhotoInput({ value }) {
+  const [imageUrl, setImageUrl] = useState(
+    faker.image.url(640, 480, 'house', true)
+  )
+
   return (
     <div className="flex py-4">
-      <img src={randomImageUrl} alt="User profile pic" className="w-20 pr-2" />
+      <img src={imageUrl} alt="User profile pic" className="w-20 pr-2" />
       <input
         name="house_photos"
         type="url"
         className="border-2 p-2 my-1 w-full"
-        defaultValue={randomImageUrl}
+        defaultValue={value}
+        onChange={(e) => {
+          setImageUrl(e.target.value)
+        }}
       />
     </div>
   )
@@ -29,6 +35,7 @@ function HousePhotoInput({}) {
 function CreateListing() {
   const [error, setError] = useState('')
   const [listings, setListings] = useState([])
+  const [imageUrl, setImageUrl] = useState('') // Add this state variable
 
   const href = window.location.href
   const baseUrl = fetchBaseUrl(href)

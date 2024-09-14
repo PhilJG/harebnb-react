@@ -16,6 +16,7 @@ function Bookings() {
 
   const getBookings = async () => {
     const { data } = await axios.get(`${baseUrl}/bookings`)
+
     setBookings(data)
   }
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { json, useParams } from 'react-router-dom'
 
 import axios from 'axios'
 import fetchBaseUrl from '../_utils/fetch.js'
@@ -9,11 +9,18 @@ import Gallery from './Gallery'
 import Reviews from './Reviews'
 import LoadSpinner from './LoadSpinner'
 
-function BookHouse({ house }) {
+axios.defaults.withCredentials = true
+
+function BookHouse({ house, params }) {
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [nights, setNights] = useState(0)
   const [totalPrice, setTotalPrice] = useState(0)
+  const [booking, setBooking] = useState({})
+  const [booked, setBooked] = useState(false)
+
+  const href = window.location.href
+  const baseUrl = fetchBaseUrl(href)
 
   useEffect(() => {
     if (!startDate || !endDate) {
@@ -33,8 +40,31 @@ function BookHouse({ house }) {
     setTotalPrice(nights * house.price)
   }, [nights])
 
+  const createBooking = async (e) => {
+    e.preventDefault()
+    const form = new FormData(e.target)
+    let formObject = Object.fromEntries(form.entries())
+    formObject.nights = nights
+    formObject.total_price = totalPrice
+    formObject.start_date = startDate
+    formObject.end_date = endDate
+    formObject.house_id = Number(params.id)
+
+    try {
+      const { data } = await axios.post(`${baseUrl}/bookings`, formObject)
+
+      setBooking(data)
+      setBooked(true)
+    } catch (err) {
+      console.log(err.message)
+    }
+  }
+
   return (
-    <form className="border-2 p-4 x-20 border-gray-300 rounded">
+    <form
+      onSubmit={(e) => createBooking(e)}
+      className="border-2 p-4 x-20 border-gray-300 rounded"
+    >
       <div className="pb-1 text-lg">
         <strong className="text-lg">${totalPrice}</strong>/night
         <div className="flex">
@@ -97,13 +127,13 @@ function House() {
   }, [])
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto lg:px-12  md:p-4 lg:p-5">
       <Nav />
       {!house ? (
         <LoadSpinner />
       ) : (
         <>
-          <Gallery images={house.house_photos} />
+          <Gallery images={house.house_photos} house_id={params} />
           <div className="grid lg:grid-cols-3 lg:gap-36 pb-10 mx-2">
             <div className="col-span-2">
               {/* <div className=""> */}
@@ -129,7 +159,8 @@ function House() {
                 <p>{house.description}</p>
               </div>
             </div>
-            <BookHouse house={house} />
+
+            <BookHouse house={house} params={params} />
           </div>
           <Reviews id={house.house_id} rating={house.rating} />
         </>
