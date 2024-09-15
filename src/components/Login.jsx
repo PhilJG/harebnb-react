@@ -18,18 +18,13 @@ function Login() {
     e.preventDefault()
 
     let form = new FormData(e.target)
-    console.log(form)
 
     let formObject = Object.fromEntries(form.entries())
-    console.log(formObject)
 
     const { data } = await axios.post(`${baseUrl}/login`, { data: formObject })
 
-    console.log(data)
-
     if (data.error) {
       setFormError(data.error)
-      console.log(formError)
     } else {
       localStorage.setItem('isLoggedIn', true)
       navigate('/')
