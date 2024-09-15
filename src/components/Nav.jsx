@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import fetchBaseUrl from '../_utils/fetch.js'
 
-// import { ReactComponent as Logo } from '../logo.svg'
+import Logo from '../harebnb.png'
 
 import axios from 'axios'
 
@@ -26,12 +26,7 @@ function Nav() {
     <div className="flex justify-between">
       <div>
         <Link to="/">
-          <img
-            src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399114/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/logo-airbnb.png"
-            alt="Airbnb logo"
-            className="h-7 mt-3 mb-1"
-          />
-          {/* <Logo alt="Airbnb logo" className="h-8 mt-3 mb-1" /> */}
+          <img src={Logo} className="h-7 mt-3 mb-1" />
         </Link>
       </div>
       <div className="flex mt-3 mb-1 gap-1">
