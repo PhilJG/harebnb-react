@@ -23,7 +23,7 @@ function HousePhotoInput({ value }) {
         name="house_photos"
         type="url"
         className="border-2 p-2 my-1 w-full"
-        defaultValue={value}
+        defaultValue={imageUrl}
         onChange={(e) => {
           setImageUrl(e.target.value)
         }}

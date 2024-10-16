@@ -6,15 +6,37 @@
    version="1.1"
    preserveAspectRatio="xMidYMid"
    id="svg6"
+   sodipodi:docname="logo.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview909"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="1.36"
+     inkscape:cx="381.61765"
+     inkscape:cy="147.42647"
+     inkscape:window-width="1920"
+     inkscape:window-height="1117"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg6" />
   <defs
      id="defs10">
     <color-profile
        name="SAMSUNG"
        xlink:href="../../../../../../.local/share/icc/edid-df11028a7e0d6d9a4f597c65b3b2575e.icc"
-       id="color-profile52100" />
+       id="color-profile2220" />
     <rect
        x="178.87279"
        y="170.21478"
@@ -24,7 +46,10 @@
   </defs>
   <g
      id="g2477"
-     transform="matrix(0.98421895,0,0,0.98421895,-36.251594,2.9275354)">
+     transform="matrix(0.98421895,0,0,0.98421895,-36.251594,2.9275354)"
+     inkscape:export-filename="/home/ubuntu/Documents/GitHub/Haiku Projects/harebnb/react-harebnb/src/harebnb.png"
+     inkscape:export-xdpi="400"
+     inkscape:export-ydpi="400">
     <g
        id="g4"
        transform="matrix(0.59623126,0,0,0.59623126,58.455356,111.25414)">
@@ -43,10 +68,13 @@
      xml:space="preserve"
      id="text6871"
      style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect6873);fill:#de565b;fill-opacity:1;stroke:none"
-     transform="matrix(1.4515121,0,0,1.4515121,-42.269207,-106.31703)"><tspan
+     transform="matrix(1.581013,0,0,1.581013,-109.56007,-141.11128)"
+     inkscape:export-filename="/home/ubuntu/Documents/GitHub/Haiku Projects/harebnb/react-harebnb/src/harebnb.png"
+     inkscape:export-xdpi="400"
+     inkscape:export-ydpi="400"><tspan
        x="178.87305"
        y="262.69531"
-       id="tspan52113"><tspan
-         style="font-size:100px;font-family:Gargi;-inkscape-font-specification:'Gargi, Normal'"
-         id="tspan52111">harebnb</tspan></tspan></text>
+       id="tspan2233"><tspan
+         style="font-weight:bold;font-size:100px;font-family:Gargi;-inkscape-font-specification:'Gargi, Normal'"
+         id="tspan2231">harebnb</tspan></tspan></text>
 </svg>

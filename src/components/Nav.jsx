@@ -23,10 +23,10 @@ function Nav() {
   }, [])
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between px-2">
       <div>
         <Link to="/">
-          <img src={Logo} className="h-7 mt-3 mb-1" />
+          <img src={Logo} className=" mt-3 mb-1 h-12" />
         </Link>
       </div>
       <div className="flex mt-3 mb-1 gap-1">
