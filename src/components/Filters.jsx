@@ -15,21 +15,10 @@ import fetchBaseUrl from '../_utils/fetch.js'
 axios.defaults.withCredentials = true
 
 function Filters({ setHouses }) {
-  const [locations, setLocations] = useState([])
   const [showFilters, setShowFilters] = useState(false)
 
   const href = window.location.href
   const baseUrl = fetchBaseUrl(href)
-
-  // Locations filter
-  const getLocations = async () => {
-    let { data } = await axios.get(`${baseUrl}/locations`)
-    setLocations(data)
-  }
-
-  useEffect(() => {
-    getLocations()
-  }, [])
 
   const submitForm = async (e) => {
     e.preventDefault()
@@ -72,7 +61,7 @@ function Filters({ setHouses }) {
           >
             <FontAwesomeIcon icon={faArrowCircleUp} />
           </button>
-        </> // Up arrow icon when filters are visible
+        </>
       ) : (
         <>
           <button
@@ -86,19 +75,6 @@ function Filters({ setHouses }) {
       {showFilters ? (
         <form onSubmit={(e) => submitForm(e)}>
           <div className="flex lg:flex-row flex-col justify-between bg-slate-100 p-2 my-2 gap-2">
-            {/* Location */}
-            <div className="flex flex-1 bg-white px-2 py-2 border rounded items-center">
-              <FontAwesomeIcon icon={faHouse} className="mr-2" />
-              <select
-                name="location"
-                className="bg-white text-sm text-black font-semibold flex-1"
-              >
-                <option value="">Any Location</option>
-                {locations.map((l, i) => (
-                  <option key={i}>{l}</option>
-                ))}
-              </select>
-            </div>
             {/* Rooms */}
             <div className="flex flex-1 bg-white px-2 py-2 border rounded items-center">
               <FontAwesomeIcon icon={faBed} className="mr-2" />
@@ -136,15 +112,6 @@ function Filters({ setHouses }) {
                 <option value="rooms">Rooms: high to low</option>
               </select>
             </div>
-            {/* Keywords */}
-            {/* <div className="flex-1">
-              <input
-                name="search"
-                type="text"
-                placeholder="keywords..."
-                className="bg-white text-sm font-semibold px-2 py-3 border rounded w-full"
-              />
-            </div> */}
             <button className="bg-[#fb7185] text-sm text-white font-semibold px-3 py-2 rounded">
               Search
             </button>
